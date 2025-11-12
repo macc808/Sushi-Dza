@@ -13,13 +13,29 @@ body {
   flex-wrap: wrap;
 }
 
-.rolls_div, .sushi_div, .sets_div, .drinks_div{
+.rolls_div, .sushi_div{
     display: flex;
     flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 80%;
+    margin: auto;
     justify-content: center;
     margin-bottom: 50px;
     margin-top: 100px;
 }
+
+.sets_div, .drinks_div{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 100%;
+    margin: auto;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 100px;
+}
+
+
 
 .rd, .sd, .std, .drd {
   --bg: #fff;
