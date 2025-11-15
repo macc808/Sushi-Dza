@@ -1,12 +1,12 @@
-const  add_cart_buttons = [...document.getElementsByClassName("add_to_cart")];
-buttons.forEach(add_to_cart => {
+const buttons = [...document.getElementsByClassName("button")];
+buttons.forEach(button => {
   button.addEventListener("click", function() {
-    button.classList.toggle("addcart");
-    button.textContent = button.classList.contains("addcart") ? "Прибрати з кошика" : "Додати до кошика";
+    button.classList.toggle("following");
+    button.textContent = button.classList.contains("following") ? "" : "";
   })
 });
 
 // for demo only
 setTimeout(function() {
-  document.getElementsByClassName("add_to_cart").focus();
+  document.querySelector("button").focus();
 }, 500);
