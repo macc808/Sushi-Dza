@@ -39,7 +39,7 @@ article{
   padding-bottom: 1rem;
 
 
-  & a{
+  a{
     display: flex;
     flex-wrap: wrap;
     max-width: 3rem;
@@ -61,7 +61,7 @@ article{
   
   }
 
-  & img{
+  img{
     text-align: center;
   }
 }
@@ -72,7 +72,7 @@ article{
     text-align: center;
     margin: auto;
   
-    & p{
+    p{
       font-family: "Didact Gothic", sans-serif;
       font-weight: 400;
       font-style: normal;
@@ -81,12 +81,12 @@ article{
       margin: auto;
     }
   
-    & img{
+    img{
       width: 1.5rem;
       height: 1.5rem;
     }
   
-    & span{
+    span{
       display: flex;
       gap:0;
       justify-content: center;
@@ -94,18 +94,18 @@ article{
       margin: auto;
     }
 
-    &.phone_img{
+    .phone_img{
       width: 2rem;
       height: 2rem;
     }
 
-    & h1{
+    h1{
       font-family: "Permanent Marker", cursive;
       font-weight: 400;
       font-style: normal;
       color:var(--text-color);
     }
-    & a{
+    a{
       color:var(--a-text-color);
     text-decoration: none;
     font-size: 1.7rem;
@@ -131,20 +131,6 @@ article{
       gap: 0;
       margin-left: 0;
     }
-  /* div p{
-    font-family: "Didact Gothic", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-
-  }
-
-  div p img{
-    width: 1.5rem;
-    height: 1.5rem;
-  } */
 
   .bin{
     display: flex;
@@ -169,49 +155,6 @@ article{
       transition: all 0.5s;
     }
   }
-/* 
-  div span{
-    display: flex;
-    gap:0;
-    justify-content: center;
-    text-align: center;
-    margin: auto;
-  }
-
-  div .logo_img{
-    width: 4rem;
-    height: 6rem;
-    gap: 0;
-    margin-left: 0;
-  }
-  .phone_img{
-      width: 2rem;
-      height: 2rem;
-  }
-
-  div h1{
-    font-family: "Permanent Marker", cursive;
-    font-weight: 400;
-    font-style: normal;
-    color:var(--text-color);
-  }
-  div a{
-    color:var(--a-text-color);
-    text-decoration: none;
-    font-size: 1.7rem;
-    gap: 2rem;
-    margin: auto;
-    font-family: "Didact Gothic", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-
-
-    &:hover{
-      background-color: #ddd;
-      border-radius: 20px;
-      transition: all 0.3s;
-    } */
   }
 
 
@@ -251,7 +194,8 @@ article{
   padding: 0.5rem;
   width: 20rem;
   /*   aspect-ratio: 2 / 3; */
-  height: auto;
+  height: 20rem;
+  max-height: fit-content;
   overflow: clip;
   position: relative;
   font-family: Lato, Montserrat, Helvetica, Arial, sans-serif;
@@ -266,7 +210,9 @@ article{
     mask: linear-gradient(#0000, #000f 80%);
     /* backdrop-filter: blur(1rem); */
     border-radius: 0 0 1.5rem 1.5rem;
+
     
+        
   }
 
   > img {
@@ -280,6 +226,8 @@ article{
     /* firefox patch */
     width: 100%;
     height: auto;
+
+    
   }
 
   > section {
@@ -383,9 +331,12 @@ article{
   }
 
   &:hover, &:focus-within {
+    padding:15rem;
+
     &::before {
       translate: 0 100%;
     }
+
 
 
     > img {
