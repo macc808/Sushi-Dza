@@ -10,3 +10,9 @@ buttons.forEach(button => {
 setTimeout(function() {
   document.querySelector("button").focus();
 }, 500);
+
+
+const levbn = [...document.getElementsByClassName("rd","sd","drd","std")]
+levbtn.forEach(btn => {
+    
+})
