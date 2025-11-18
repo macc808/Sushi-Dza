@@ -12,7 +12,3 @@ setTimeout(function() {
 }, 500);
 
 
-const levbn = [...document.getElementsByClassName("rd","sd","drd","std")]
-levbtn.forEach(btn => {
-    
-})
