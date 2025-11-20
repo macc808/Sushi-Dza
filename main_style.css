@@ -26,19 +26,23 @@ nav{
   text-align: center;
   justify-content: center;
   margin: auto;
-  max-width: 85%;
-  background: var(--nav-bg);
-  border-radius: 30px;
+  max-width: 85%;;
+  z-index: 3; 
   padding: 0rem 2rem 0 2rem;
-  box-shadow: 0.5rem 1rem 1rem rgba(0, 0, 0, 0.1);
   
 article{
   display: flex;
   justify-content: center;
   text-align: center;
   gap: 3rem;
-  padding-bottom: 1rem;
-
+  max-width: fit-content;
+  margin: auto;
+  margin-top: 1rem;
+  padding-bottom:1rem;
+  padding-top: 1rem;
+  background: var(--nav-bg);
+  border-radius: 30px;
+  box-shadow: 0.5rem 1rem 1rem rgba(0, 0, 0, 0.1);
 
   a{
     display: flex;
@@ -73,6 +77,9 @@ article{
     justify-content: center;
     text-align: center;
     margin: auto;
+    background: var(--nav-bg);
+    border-radius: 30px;
+    box-shadow: 0.5rem 1rem 1rem rgba(0, 0, 0, 0.1);
   
     p{
       font-family: "Didact Gothic", sans-serif;
@@ -373,6 +380,7 @@ article{
   margin: auto;
   margin-bottom: 0;
   border-radius: 23px;
+  margin-top: 5rem;
   
 }
 
