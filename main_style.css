@@ -24,7 +24,7 @@ header{
 nav{
   --nav-bg:#fff;
   --text-color: #000;
-  --a-text-color: #000;
+      border: none;
   text-align: center;
   justify-content: center;
   margin: auto;

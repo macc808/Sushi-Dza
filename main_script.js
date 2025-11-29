@@ -5,7 +5,6 @@ function random_banner2_img(min,max) {
     var random = Math.floor(Math.random() * (max - min + 1) + min);
     if (random == 1) {
         b2_txt = "https://i.postimg.cc/cC6T9bZz/rolls3.png"
-        cart["rd-1"]
     }
     if (random == 2) {
         b2_txt= "https://i.postimg.cc/MHXtPFxs/rolls1.png"
@@ -75,6 +74,14 @@ setTimeout(function() {
 // --- Cart implementation ---
 const cart = {};
 
+// load persisted cart if any
+function loadCart(){
+  try{ const raw = localStorage.getItem('sushidza_cart'); if(raw){ const obj=JSON.parse(raw); for(const k in obj) cart[k]=obj[k]; }}catch(e){console.error(e)}
+}
+
+function saveCart(){
+  try{ localStorage.setItem('sushidza_cart', JSON.stringify(cart)); }catch(e){console.error(e)}
+}
 function ensureProductIds(){
   const containers = document.querySelectorAll('.rd, .sd, .std, .drd');
   containers.forEach((el, index) => {
@@ -84,6 +91,46 @@ function ensureProductIds(){
       el.dataset.productId = `${base}-${index+1}`;
     }
   });
+}
+
+// augment existing product elements with price/weight dataset attributes when possible
+function ensureProductMetadata(){
+  const containers = document.querySelectorAll('.rd, .sd, .std, .drd');
+  containers.forEach((el)=>{
+    // price
+    if(!el.dataset.price){
+      const p = parsePriceFromElement(el);
+      if(p !== null) el.dataset.price = String(p);
+    }
+    // weight
+    if(!el.dataset.weight){
+      const w = parseWeightFromElement(el);
+      if(w) el.dataset.weight = w;
+    }
+  });
+}
+
+// read price text like <span class="price">190</span> -> 190 (number)
+function parsePriceFromElement(el){
+  const priceEl = el.querySelector('.price');
+  if(priceEl){
+    const txt = priceEl.textContent.replace(/[^0-9.,]/g,'').replace(',','.');
+    const n = parseFloat(txt);
+    if(!isNaN(n)) return n;
+  }
+  return null;
+}
+
+// read weight text like <span class="weight">Вага:320г</span> -> "320 г"
+function parseWeightFromElement(el){
+  const wEl = el.querySelector('.weight');
+  if(wEl){
+    const txt = wEl.textContent || '';
+    const m = txt.match(/(\d+)[^\d]?/);
+    if(m) return m[1] + ' г';
+    return txt.trim();
+  }
+  return null;
 }
 
 function createCartDOM(){
@@ -101,6 +148,7 @@ function createCartDOM(){
     <div class="cart-items" aria-live="polite"></div>
     <div class="cart-footer">
       <div class="total"><span>Кількість:</span><span class="count">0</span></div>
+      <div class="sum"><span>Разом:</span><span class="sum-value">0 грн</span></div>
       <div style="display:flex;gap:.5rem;"><button class="clear-cart">Очистити</button><button class="checkout">Оформити</button></div>
     </div>
   `;
@@ -131,6 +179,29 @@ function updateBinBadge(){
   if(badge){ if(total>0) badge.classList.add('visible'); else badge.classList.remove('visible'); }
 }
 
+// add item by matching an image url to product containers
+function addToCartByImage(imgUrl){
+  if(!imgUrl) return;
+  // find product whose img src endsWith or contains imgUrl
+  const containers = document.querySelectorAll('.rd, .sd, .std, .drd');
+  for(const el of containers){
+    const img = el.querySelector('img');
+    if(!img) continue;
+    if(img.src && (img.src === imgUrl || img.src.endsWith(imgUrl) || img.src.indexOf(imgUrl)!==-1)){
+      if(!el.dataset.productId) ensureProductIds();
+      addToCart(el.dataset.productId);
+      return;
+    }
+  }
+  // if none found, create a synthetic product id based on image
+  const syntheticId = `img-${String(imgUrl).replace(/[^a-z0-9]/gi,'')}`;
+  if(!cart[syntheticId]){
+    cart[syntheticId] = { id: syntheticId, name: 'Товар', img: imgUrl, qty: 1 };
+    renderCart();
+    syncButtonsWithCart();
+  }
+}
+
 function syncButtonsWithCart(){
   // iterate product containers and set/unset .following on their .button according to cart
   document.querySelectorAll('.rd, .sd, .std, .drd').forEach(el=>{
@@ -151,24 +222,34 @@ function renderCart(){
   const itemsEl = panel.querySelector('.cart-items');
   itemsEl.innerHTML = '';
   let totalCount = 0;
+  let totalSum = 0;
   for(const id in cart){
     const it = cart[id];
     totalCount += it.qty;
+    const price = it.price?Number(it.price):240;
+    const subtotal = price * it.qty;
+    totalSum += subtotal;
     const row = document.createElement('div'); row.className = 'cart-item';
     row.innerHTML = `
       <img src="${it.img}" alt="${escapeHtml(it.name)}">
       <div class="meta"><h4>${escapeHtml(it.name)}</h4>
+        <p>Вага: ${it.weight || '—'}</p>
         <div class="qty-controls">
           <button class="qty-dec" data-id="${id}">−</button>
           <input type="number" min="1" class="qty-input" data-id="${id}" value="${it.qty}" />
           <button class="qty-inc" data-id="${id}">+</button>
         </div>
       </div>
-      <div><button class="remove" data-id="${id}">Видалити</button></div>
+      <div style="margin-left:auto;text-align:right">
+        <div style="font-weight:700">${price} грн</div>
+        <div style="color:#666">${subtotal} грн</div>
+        <div><button class="remove" data-id="${id}">Видалити</button></div>
+      </div>
     `;
     itemsEl.appendChild(row);
   }
   panel.querySelector('.count').textContent = totalCount;
+  const sumEl = panel.querySelector('.sum-value'); if(sumEl) sumEl.textContent = totalSum + ' грн';
   // attach remove listeners
   panel.querySelectorAll('.remove').forEach(btn=> btn.addEventListener('click', function(e){ const id = this.dataset.id; removeFromCart(id); }));
   // attach qty controls
@@ -176,6 +257,7 @@ function renderCart(){
   panel.querySelectorAll('.qty-dec').forEach(b=> b.addEventListener('click', function(){ const id=this.dataset.id; if(cart[id]){ cart[id].qty = Math.max(1, cart[id].qty - 1); renderCart(); }}));
   panel.querySelectorAll('.qty-input').forEach(i=> i.addEventListener('change', function(){ const id=this.dataset.id; let v = parseInt(this.value,10)||1; v = Math.max(1,v); if(cart[id]){ cart[id].qty = v; renderCart(); }}));
   updateBinBadge();
+  saveCart();
 }
 
 function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -190,7 +272,11 @@ function addToCart(productId){
   if(cart[productId]){
     delete cart[productId];
   } else {
-    cart[productId] = { id: productId, name, img, qty: 1 };
+    // ensure metadata on container
+    if(!container.dataset.price || !container.dataset.weight) ensureProductMetadata();
+    const price = container.dataset.price ? Number(container.dataset.price) : (parsePriceFromElement(container) || 240);
+    const weight = container.dataset.weight || parseWeightFromElement(container) || '40 г';
+    cart[productId] = { id: productId, name, img, qty: 1, price, weight };
   }
   renderCart();
   syncButtonsWithCart();
@@ -208,9 +294,41 @@ function closeCart(){ const ov = document.querySelector('.cart-overlay'); const 
 // wire .bin to open cart
 document.addEventListener('DOMContentLoaded', function(){
   ensureProductIds();
+  ensureProductMetadata();
+  loadCart();
   createCartDOM();
-  // open cart on bin click
-  const bin = document.querySelector('.bin'); if(bin) bin.addEventListener('click', openCart);
+  // reconcile existing persisted cart items with metadata (price/weight)
+  (function reconcileCart(){
+    let changed = false;
+    for(const id in cart){
+      const it = cart[id];
+      if((!it.price || !it.weight) && document.querySelector(`[data-product-id="${id}"]`)){
+        const c = document.querySelector(`[data-product-id="${id}"]`);
+        const p = c.dataset.price ? Number(c.dataset.price) : parsePriceFromElement(c);
+        const w = c.dataset.weight || parseWeightFromElement(c);
+        if(p) { it.price = p; changed = true; }
+        if(w) { it.weight = w; changed = true; }
+      }
+    }
+    if(changed) saveCart();
+  })();
+  // open side cart on bin click (restore previous behavior)
+  const bin = document.querySelector('.bin');
+  if(bin){
+    bin.addEventListener('click', function(e){
+      e && e.preventDefault();
+      createCartDOM();
+      openCart();
+    });
+  }
+  // make the navigation "Доставка" go to the order page
+  document.querySelectorAll('.nav_txt').forEach(a => {
+    try{
+      if(a.textContent && a.textContent.trim().toLowerCase().includes('доставка')){
+        a.addEventListener('click', function(e){ e && e.preventDefault(); window.location.href = 'order.html'; });
+      }
+    }catch(e){/* ignore */}
+  });
   // wire .button clicks to add item and open cart
   const productButtons = document.querySelectorAll('.button');
   productButtons.forEach(btn => {
@@ -223,4 +341,12 @@ document.addEventListener('DOMContentLoaded', function(){
       }
     });
   });
+  // apply saved cart state to buttons
+  syncButtonsWithCart();
+  renderCart();
+  // wire banner order button to add current banner image
+  const orderBtn = document.getElementById('order');
+  if(orderBtn){
+    orderBtn.addEventListener('click', function(){ if(b2_txt) addToCartByImage(b2_txt); });
+  }
 });
