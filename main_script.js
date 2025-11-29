@@ -5,18 +5,41 @@ function random_banner2_img(min,max) {
     var random = Math.floor(Math.random() * (max - min + 1) + min);
     if (random == 1) {
         b2_txt = "https://i.postimg.cc/cC6T9bZz/rolls3.png"
+        cart["rd-1"]
     }
     if (random == 2) {
-        b2_txt= "https://i.postimg.cc/7YBLSRWK/Gemini-Generated-Image-gzf8tgzf8tgzf8tg-1.png"
+        b2_txt= "https://i.postimg.cc/MHXtPFxs/rolls1.png"
     }
     if (random == 3) {
-        b2_txt = "https://i.postimg.cc/02tN74Bd/Gemini-Generated-Image-na26tvna26tvna26-1.png"
+        b2_txt = "https://i.postimg.cc/D0m5jMn2/rolls7.png"
+    }
+
+
+    if (random == 4) {
+        b2_txt = "https://i.postimg.cc/QC4NsV2g/Sushi2.png"
+    }
+    if (random == 5) {
+        b2_txt= "https://i.postimg.cc/J067mtfp/Sushi6.png"
+    }
+    if (random == 6) {
+        b2_txt = "https://i.postimg.cc/0jW5xrTY/Sushi4.png"
+    }
+
+
+    if (random == 7) {
+        b2_txt = "https://i.postimg.cc/wxGdqKtN/sets8.png"
+    }
+    if (random == 8) {
+        b2_txt= "https://i.postimg.cc/MZF86kcT/sets2.png"
+    }
+    if (random == 9) {
+        b2_txt = "https://i.postimg.cc/9Xnjm340/sets5.png"
     }
     console.log(b2_txt);
     var banner2_img = document.getElementById("banner2_change");
     banner2_img.setAttribute('src' , b2_txt);
 }
-random_banner2_img(1, 3)
+random_banner2_img(1, 9)
     
 
 const buttons = [...document.getElementsByClassName("button")];
@@ -88,7 +111,9 @@ function createCartDOM(){
   overlay.addEventListener('click', closeCart);
   panel.querySelector('.close-btn').addEventListener('click', closeCart);
   panel.querySelector('.clear-cart').addEventListener('click', function(){
-    for(const k in cart) delete cart[k]; renderCart();
+    for(const k in cart) delete cart[k];
+    renderCart();
+    syncButtonsWithCart();
   });
   // ensure badge exists on the .bin button
   const bin = document.querySelector('.bin');
@@ -104,6 +129,20 @@ function updateBinBadge(){
   const badge = bin.querySelector('.cart-badge');
   let total = 0; for(const k in cart) total += cart[k].qty;
   if(badge){ if(total>0) badge.classList.add('visible'); else badge.classList.remove('visible'); }
+}
+
+function syncButtonsWithCart(){
+  // iterate product containers and set/unset .following on their .button according to cart
+  document.querySelectorAll('.rd, .sd, .std, .drd').forEach(el=>{
+    const pid = el.dataset.productId;
+    const btn = el.querySelector('.button');
+    if(!btn) return;
+    if(pid && cart[pid]){
+      btn.classList.add('following');
+    } else {
+      btn.classList.remove('following');
+    }
+  });
 }
 
 function renderCart(){
@@ -154,13 +193,13 @@ function addToCart(productId){
     cart[productId] = { id: productId, name, img, qty: 1 };
   }
   renderCart();
+  syncButtonsWithCart();
 }
 
 function removeFromCart(productId){ 
   delete cart[productId]; 
   renderCart(); 
-  button.classList.toggle("following");
-  button.textContent = button.classList.contains("following") ? "" : "";
+  syncButtonsWithCart();
 }
 
 function openCart(){ createCartDOM(); document.querySelector('.cart-overlay').classList.add('visible'); document.querySelector('.cart-panel').classList.add('open'); document.body.style.overflow = 'hidden'; }

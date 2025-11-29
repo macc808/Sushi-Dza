@@ -392,6 +392,8 @@ article{
   }
 }
 
+
+
 /* Like button styles and animation */
 .like {
   display: inline-grid;
@@ -459,8 +461,8 @@ article{
   position: fixed;
   right: 0;
   top: 0;
-  height: 100vh;
-  width: 360px;
+  height: 95%;
+  width: fit-content;
   max-width: 100%;
   background: #fff;
   box-shadow: -12px 0 30px rgba(0,0,0,0.15);
@@ -470,6 +472,7 @@ article{
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  font-family:"Didact Gothic", sans-serif;
 }
 .cart-panel.open { transform: translateX(0); }
 
@@ -479,6 +482,7 @@ article{
   justify-content: space-between;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
+  font-size: 2rem;
 }
 .cart-panel .cart-items {
   flex: 1 1 auto;
@@ -491,16 +495,40 @@ article{
   align-items:center;
   padding: 0.5rem 0;
   border-bottom: 1px solid rgba(0,0,0,0.06);
+  font-size: 2rem;
 }
-.cart-item img { width: 48px; height:48px; object-fit:cover; border-radius:6px; }
+.cart-item img {width: 8rem; height:8rem; object-fit:cover; border-radius:6px; }
 .cart-item .meta { flex:1; }
-.cart-item .meta h4 { margin:0; font-size:0.95rem; }
-.cart-item .meta .qty { font-size:0.85rem; color:#555; }
-.cart-item .remove { background:transparent; border:none; color:#d32f2f; cursor:pointer; font-size:1rem; }
+.cart-item .meta h4 { margin:0; font-size:1.3rem; font-family:"Didact Gothic", sans-serif;}
+.cart-item .meta .qty { font-size:0.85rem; color:#555; font-family:"Didact Gothic", sans-serif;}
+.cart-item .remove { background:transparent; border:none; color:#d32f2f; cursor:pointer; font-size:1rem; font-family:"Didact Gothic", sans-serif; }
 
-.cart-footer { padding-top:0.75rem; border-top:1px solid rgba(0,0,0,0.06); display:flex; flex-direction:column; gap:0.5rem; }
+.cart-footer { padding-top:0.75rem; border-top:1px solid rgba(0,0,0,0.06); display:flex; flex-direction:column; gap:0.5rem; font-size: 1.6rem;}
 .cart-footer .total { display:flex; justify-content:space-between; font-weight:700; }
-.cart-panel .close-btn { background:transparent; border:none; font-size:1.1rem; cursor:pointer; }
+.cart-panel .close-btn { background:transparent; border:none; font-size:1.7rem; font-family:"Didact Gothic", sans-serif; cursor:pointer; }
+.cart-footer .checkout{
+  background-color: #03b62af5;
+
+  &:hover {
+    background-color: #04a026f5;
+  }
+}
+.cart-footer button {
+  background:#f6822ae5;
+  color:#fff;
+  border:none;
+  border-radius:1.25rem 1.25rem 1.5rem 1.25rem;
+  padding:1rem 2rem 1rem 1.5rem;
+  font-size:1.2rem;
+  cursor:pointer;
+  transition:background 0.33s;
+
+  &:hover {
+    background:#d86f1fe5;
+  }
+}
+
+
 
 /* small responsive tweak */
 @media (max-width:480px){ .cart-panel{ width: 92vw;} }
@@ -520,6 +548,39 @@ article{
   z-index: 80;
 }
 .bin .cart-badge.visible { display: block; }
+
+/* Quantity controls in cart */
+.qty-controls{
+  display:flex;
+  gap:0.4rem;
+  align-items:center;
+  margin-top:0.5rem;
+}
+.qty-controls button{
+  width:2.2rem;
+  height:2.2rem;
+  display:inline-grid;
+  place-items:center;
+  background:#f1f1f1;
+  border:1px solid #e0e0e0;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:1.1rem;
+  line-height:1;
+}
+.qty-controls button:hover{ background:#e8e8e8; }
+.qty-controls .qty-input{
+  width:3.2rem;
+  height:2.2rem;
+  text-align:center;
+  border:1px solid #e0e0e0;
+  border-radius:8px;
+  font-size:1rem;
+  padding:0.1rem;
+}
+
+/* smaller remove button visual tweak */
+.cart-item .remove{ font-size:0.95rem; padding:0.25rem 0.5rem; border-radius:6px; background:#fff0; }
 
 .banner1{
   display: flex;
@@ -669,6 +730,24 @@ article{
   display: flex;
   background-color: white;
   border-radius: 23px;
+}
+
+#order{
+  width: 15rem;
+  height: 3rem;
+  margin: auto;
+  margin: 0rem 2rem 2rem 3rem;
+  border: none;
+  border-radius: 1.5rem;
+  background-color: #00CC2D;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover{
+    background-color: #00991F;
+  }
 }
 
 .banner2_text{
