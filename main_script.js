@@ -39,7 +39,7 @@ function random_banner2_img(min,max) {
     banner2_img.setAttribute('src' , b2_txt);
 }
 random_banner2_img(1, 9)
-    
+  
 
 const buttons = [...document.getElementsByClassName("button")];
 buttons.forEach(button => {
@@ -149,7 +149,7 @@ function createCartDOM(){
     <div class="cart-footer">
       <div class="total"><span>Кількість:</span><span class="count">0</span></div>
       <div class="sum"><span>Разом:</span><span class="sum-value">0 грн</span></div>
-      <div style="display:flex;gap:.5rem;"><button class="clear-cart">Очистити</button><button class="checkout">Оформити</button></div>
+      <div style="display:flex;gap:.5rem;"><button class="clear-cart">Очистити</button><button id="check" class="checkout">Оформити</button></div>
     </div>
   `;
 
@@ -327,6 +327,7 @@ document.addEventListener('DOMContentLoaded', function(){
       if(a.textContent && a.textContent.trim().toLowerCase().includes('доставка')){
         a.addEventListener('click', function(e){ e && e.preventDefault(); window.location.href = 'order.html'; });
       }
+      
     }catch(e){/* ignore */}
   });
   // wire .button clicks to add item and open cart
