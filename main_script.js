@@ -163,6 +163,8 @@ function createCartDOM(){
     renderCart();
     syncButtonsWithCart();
   });
+  panel.querySelector('.checkout').addEventListener('click', function(){
+  window.location.href = 'order.html';})
   // ensure badge exists on the .bin button
   const bin = document.querySelector('.bin');
   if(bin && !bin.querySelector('.cart-badge')){
@@ -314,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function(){
   })();
   // open side cart on bin click (restore previous behavior)
   const bin = document.querySelector('.bin');
-  if(bin){
+  if(bin){ 
     bin.addEventListener('click', function(e){
       e && e.preventDefault();
       createCartDOM();
