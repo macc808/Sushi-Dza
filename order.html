@@ -391,6 +391,44 @@ article{
     .rec-item .add{margin-left:auto;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:.4rem .6rem;cursor:pointer}
     footer.small{margin-top:1.2rem;font-size:.9rem;color:var(--muted)}
     @media(max-width:980px){.container{flex-direction:column;padding:1rem}.right{width:100%}}
+
+    @media (max-width: 480px) {
+
+    .container {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .left, .right {
+        width: 100%;
+    }
+
+    /* форма зверху */
+    .left {
+        order: 1;
+    }
+    .right {
+        order: 2;
+    }
+
+    /* картки кошика */
+    .cart-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    .cart-item img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* кнопка оформити вниз */
+    .checkout {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    }
+
   </style>
 </head>
 <body>

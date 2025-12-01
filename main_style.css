@@ -1003,3 +1003,161 @@ footer{
     }
   }
 }
+
+@media (max-width: 480px) {
+
+/* ============================
+   HEADER → BURGER MENU
+============================ */
+nav div {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+nav a,
+nav p,
+nav .bin {
+    display: none; /* ховаємо навігацію */
+}
+
+/* бургер кнопка */
+.burger {
+    width: 2.2rem;
+    height: 2.2rem;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    padding: 4px;
+    cursor: pointer;
+}
+.burger span {
+    height: 3px;
+    background: #000;
+    width: 100%;
+    border-radius: 3px;
+}
+
+/* випадаюче меню */
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 15px;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+.mobile-menu.open {
+    display: flex;
+}
+
+/* ============================
+   BANNER → IMAGE TOP
+============================ */
+.banner1 {
+    flex-direction: column;
+    width: 100%;
+}
+.slider {
+    width: 100%;
+    height: auto;
+    margin: 0;
+}
+.slider img {
+    width: 100%;
+    height: auto;
+    border-radius: 23px 23px 0 0;
+}
+.banner1_text {
+    width: 100%;
+    height: auto;
+    border-radius: 0 0 23px 23px;
+    padding-bottom: 2rem;
+}
+
+/* ============================
+   PRODUCT CARDS → 2 COLS
+============================ */
+.rolls_div,
+.sushi_div,
+.sets_div,
+.drinks_div {
+    gap: 1rem;
+    max-width: 100%;
+}
+.rd, .sd, .std, .drd {
+    width: calc(50% - 1rem);
+    height: auto;
+}
+
+/* забираємо huge hover */
+.rd:hover, .sd:hover, .std:hover, .drd:hover {
+    padding-bottom: 1rem;
+}
+
+/* ============================
+   MAIN TEXT SIZES SMALLER
+============================ */
+h1 {
+    font-size: 1.8rem !important;
+    margin-left: 1rem !important;
+}
+
+/* ============================
+   BANNER 2 MOBILE
+============================ */
+.banner2 {
+    flex-direction: column;
+}
+.banner2_text {
+    width: 100%;
+    text-align: center;
+}
+.banner2_img img {
+    width: 100%;
+    border-radius: 23px;
+}
+
+/* ============================
+   FOOTER MOBILE
+============================ */
+footer {
+    flex-direction: column;
+    text-align: center;
+}
+footer section {
+    flex-direction: column;
+    gap: 2rem;
+}
+}
+
+@media (max-width: 1024px) {
+
+nav div {
+    gap: 1rem;
+}
+nav a {
+    font-size: 1.2rem;
+}
+
+/* картки адаптуються */
+.rd, .sd, .std, .drd {
+    width: 15rem;
+}
+
+/* банер */
+.banner1 {
+    flex-direction: column;
+}
+.slider,
+.banner1_text {
+    width: 100%;
+    border-radius: 23px;
+}
+
+}
