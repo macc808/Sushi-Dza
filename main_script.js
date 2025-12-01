@@ -40,6 +40,22 @@ function random_banner2_img(min,max) {
 }
 random_banner2_img(1, 9)
   
+document.addEventListener('DOMContentLoaded', function(){
+  // ... існуючий код ...
+  
+  // Додаємо toggle для article при кліку на стрілку
+  const toggleArrow = document.querySelector('.toggle-arrow');
+  const categories = document.querySelector('.categories');
+  if (toggleArrow && categories) {
+    toggleArrow.addEventListener('click', function() {
+      categories.classList.toggle('open');
+      // Змінюємо стрілку (наприклад, ▼ на ▲)
+      toggleArrow.textContent = categories.classList.contains('open') ? '▲' : '▼';
+    });
+  }
+  
+  // ... решта існуючого коду ...
+});
 
 const buttons = [...document.getElementsByClassName("button")];
 buttons.forEach(button => {
