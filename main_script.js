@@ -1,73 +1,43 @@
-var b2_txt = ""
-function random_banner2_img(min,max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    var random = Math.floor(Math.random() * (max - min + 1) + min);
-    salePrice = 0
-    globalThis.salePrice = salePrice; // make salePrice global
-    if (random == 1) {
-        b2_txt = "https://i.postimg.cc/cC6T9bZz/rolls3.png"
-        salePrice = 0.1
-        b2price =420 
-    }
-    if (random == 2) {
-        b2_txt= "https://i.postimg.cc/MHXtPFxs/rolls1.png"
-        salePrice = 0.1
-        b2price = 450
-      }
-    if (random == 3) {
-        salePrice = 0.1
-        b2_txt = "https://i.postimg.cc/D0m5jMn2/rolls7.png"
-        b2price = 390
-    }
+let b2_txt = "";
+let b2price = 0;
+let salePrice = 0;
+function random_banner2_img(min, max) {
 
+    let random = Math.floor(Math.random() * (max - min + 1) + min);
 
-    if (random == 4) {
-        b2_txt = "https://i.postimg.cc/QC4NsV2g/Sushi2.png"
-        salePrice = 0.08
-        b2price = 80
-    }
-    if (random == 5) {
-        b2_txt= "https://i.postimg.cc/J067mtfp/Sushi6.png"
-        salePrice = 0.08
-        b2price = 85
-      }
-    if (random == 6) {
-        b2_txt = "https://i.postimg.cc/0jW5xrTY/Sushi4.png"
-        salePrice = 0.08
-        b2price = 90
-    }
+    salePrice = 0;
 
+    if (random == 1) { b2_txt = "https://i.postimg.cc/cC6T9bZz/rolls3.png"; salePrice = 0.1; b2price = 420; }
+    if (random == 2) { b2_txt = "https://i.postimg.cc/MHXtPFxs/rolls1.png"; salePrice = 0.1; b2price = 450; }
+    if (random == 3) { b2_txt = "https://i.postimg.cc/D0m5jMn2/rolls7.png"; salePrice = 0.1; b2price = 390; }
 
-    if (random == 7) {
-        b2_txt = "https://i.postimg.cc/wxGdqKtN/sets8.png"
-        salePrice = 0.2
-        b2price = 1200
+    if (random == 4) { b2_txt = "https://i.postimg.cc/QC4NsV2g/Sushi2.png"; salePrice = 0.08; b2price = 80; }
+    if (random == 5) { b2_txt = "https://i.postimg.cc/J067mtfp/Sushi6.png"; salePrice = 0.08; b2price = 85; }
+    if (random == 6) { b2_txt = "https://i.postimg.cc/0jW5xrTY/Sushi4.png"; salePrice = 0.08; b2price = 90; }
+
+    if (random == 7) { b2_txt = "https://i.postimg.cc/wxGdqKtN/sets8.png"; salePrice = 0.2; b2price = 1200; }
+    if (random == 8) { b2_txt = "https://i.postimg.cc/MZF86kcT/sets2.png"; salePrice = 0.2; b2price = 1100; }
+    if (random == 9) { b2_txt = "https://i.postimg.cc/9Xnjm340/sets5.png"; salePrice = 0.2; b2price = 1850; }
+
+    // ОНОВЛЮЄМО ВЖЕ ІСНУЮЧІ ЕЛЕМЕНТИ
+    const old_price = document.querySelector('.banner2_old');
+    const new_price = document.querySelector('.banner2_new');
+    const banner2_img = document.getElementById("banner2_change");
+
+    if (old_price && new_price && banner2_img) {
+
+        old_price.textContent = b2price + " грн";
+        let discounted = Math.round(b2price - (b2price * salePrice));
+        new_price.textContent = discounted + " грн";
+
+        banner2_img.src = b2_txt;
     }
-    if (random == 8) {
-        b2_txt= "https://i.postimg.cc/MZF86kcT/sets2.png"
-        salePrice = 0.2
-        b2price = 1100
-    }
-    if (random == 9) {
-        b2_txt = "https://i.postimg.cc/9Xnjm340/sets5.png"
-        salePrice = 0.2
-        b2price = 1850
-    }
-    var old_price = document.querySelector('.banner2_old');
-    old_price.textContent = b2price + " грн";
-    var new_price = document.querySelector('.banner2_new');
-    var discounted_price = Math.round(b2price - (b2price * salePrice));
-    new_price.textContent = "  " + discounted_price + " грн";
-    console.log(b2_txt);
-    var banner2_img = document.getElementById("banner2_change");
-    banner2_img.setAttribute('src' , b2_txt);
 }
-random_banner2_img(1, 9)
+
 
 document.addEventListener('DOMContentLoaded', function(){
   // ... існуючий код ...
-  
+  random_banner2_img(1, 9);
   // Додаємо toggle для article при кліку на стрілку
   const toggleArrow = document.querySelector('.toggle-arrow');
   const categories = document.querySelector('.categories');
