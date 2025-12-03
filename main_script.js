@@ -3,43 +3,68 @@ function random_banner2_img(min,max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     var random = Math.floor(Math.random() * (max - min + 1) + min);
+    salePrice = 0
+    globalThis.salePrice = salePrice; // make salePrice global
     if (random == 1) {
         b2_txt = "https://i.postimg.cc/cC6T9bZz/rolls3.png"
+        salePrice = 0.1
+        b2price =420 
     }
     if (random == 2) {
         b2_txt= "https://i.postimg.cc/MHXtPFxs/rolls1.png"
-    }
+        salePrice = 0.1
+        b2price = 450
+      }
     if (random == 3) {
+        salePrice = 0.1
         b2_txt = "https://i.postimg.cc/D0m5jMn2/rolls7.png"
+        b2price = 390
     }
 
 
     if (random == 4) {
         b2_txt = "https://i.postimg.cc/QC4NsV2g/Sushi2.png"
+        salePrice = 0.08
+        b2price = 80
     }
     if (random == 5) {
         b2_txt= "https://i.postimg.cc/J067mtfp/Sushi6.png"
-    }
+        salePrice = 0.08
+        b2price = 85
+      }
     if (random == 6) {
         b2_txt = "https://i.postimg.cc/0jW5xrTY/Sushi4.png"
+        salePrice = 0.08
+        b2price = 90
     }
 
 
     if (random == 7) {
         b2_txt = "https://i.postimg.cc/wxGdqKtN/sets8.png"
+        salePrice = 0.2
+        b2price = 1200
     }
     if (random == 8) {
         b2_txt= "https://i.postimg.cc/MZF86kcT/sets2.png"
+        salePrice = 0.2
+        b2price = 1100
     }
     if (random == 9) {
         b2_txt = "https://i.postimg.cc/9Xnjm340/sets5.png"
+        salePrice = 0.2
+        b2price = 1850
     }
+    var old_price = document.querySelector('.banner2_old');
+    old_price.textContent = b2price + " грн";
+    var new_price = document.querySelector('.banner2_new');
+    var discounted_price = Math.round(b2price - (b2price * salePrice));
+    new_price.textContent = "  " + discounted_price + " грн";
     console.log(b2_txt);
     var banner2_img = document.getElementById("banner2_change");
     banner2_img.setAttribute('src' , b2_txt);
 }
 random_banner2_img(1, 9)
-  
+
 document.addEventListener('DOMContentLoaded', function(){
   // ... існуючий код ...
   
@@ -207,7 +232,7 @@ function addToCartByImage(imgUrl){
     if(!img) continue;
     if(img.src && (img.src === imgUrl || img.src.endsWith(imgUrl) || img.src.indexOf(imgUrl)!==-1)){
       if(!el.dataset.productId) ensureProductIds();
-      addToCart(el.dataset.productId);
+      addToCart(el.dataset.productId, salePrice);
       return;
     }
   }
@@ -244,8 +269,9 @@ function renderCart(){
   for(const id in cart){
     const it = cart[id];
     totalCount += it.qty;
-    const price = it.price?Number(it.price):240;
-    const subtotal = price * it.qty;
+    const finalprice = it.finalprice?Number(it.finalprice):240;
+    const price = it.price?Number(it.price):240; // fallback price
+    const subtotal = finalprice * it.qty;
     totalSum += subtotal;
     const row = document.createElement('div'); row.className = 'cart-item';
     row.innerHTML = `
@@ -266,6 +292,7 @@ function renderCart(){
     `;
     itemsEl.appendChild(row);
   }
+  
   panel.querySelector('.count').textContent = totalCount;
   const sumEl = panel.querySelector('.sum-value'); if(sumEl) sumEl.textContent = totalSum + ' грн';
   // attach remove listeners
@@ -280,7 +307,7 @@ function renderCart(){
 
 function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-function addToCart(productId){
+function addToCart(productId, salePrice){
   if(!productId) return;
   const container = document.querySelector(`[data-product-id="${productId}"]`);
   if(!container) return;
@@ -293,8 +320,9 @@ function addToCart(productId){
     // ensure metadata on container
     if(!container.dataset.price || !container.dataset.weight) ensureProductMetadata();
     const price = container.dataset.price ? Number(container.dataset.price) : (parsePriceFromElement(container) || 240);
+    let finalprice = price-(salePrice*price);
     const weight = container.dataset.weight || parseWeightFromElement(container) || '40 г';
-    cart[productId] = { id: productId, name, img, qty: 1, price, weight };
+    cart[productId] = { id: productId, name, img, qty: 1, finalprice, price, weight };
   }
   renderCart();
   syncButtonsWithCart();
@@ -356,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function(){
       const product = btn.closest('.rd, .sd, .std, .drd');
       if(product){
         if(!product.dataset.productId) ensureProductIds();
-        addToCart(product.dataset.productId);
+        addToCart(product.dataset.productId,0);
       }
     });
   });

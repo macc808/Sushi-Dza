@@ -759,6 +759,17 @@ nav {
   display: flex;
   background-color: white;
   border-radius: 23px;
+  height: 100%;
+}
+
+.banner2_img{
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  margin-left: 0;
+  padding-bottom: 5rem;
+  border-radius: 0 23px 23px 0;
+  box-shadow: 0.5rem 1rem 1rem rgba(0, 0, 0, 0.1);
 }
 
 #order{
@@ -783,6 +794,29 @@ nav {
   width: 60rem;
   height: 15rem;
   margin: auto;
+  width: 100%;
+
+  .banner2_span{
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-left: 3rem;
+    margin-bottom: 2rem;
+    font-family: "Didact Gothic", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+.banner2_old {
+    color: #999;
+    font-size: 1.6rem;
+  }
+
+.banner2_new {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #00CC2D;
+}
 
   h2{
     font-family: "Didact Gothic", sans-serif;
@@ -1122,6 +1156,7 @@ h1 {
     width: 100%;
     border-radius: 23px;
 }
+
 
 /* ============================
    FOOTER MOBILE

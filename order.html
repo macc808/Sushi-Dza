@@ -575,7 +575,8 @@ article{
       const list = document.getElementById('cart-list'); list.innerHTML = '';
       let total=0, count=0;
       for(const id in cart){ const it = cart[id];
-        count += it.qty; const price = it.price?Number(it.price):240; // fallback price
+        count += it.qty; 
+        const price = it.finalprice ? Number(it.finalprice) : (it.price ? Number(it.price) : 240); // fallback price
         total += price * it.qty;
         const el = document.createElement('div'); el.className='cart-item';
         el.innerHTML = `
