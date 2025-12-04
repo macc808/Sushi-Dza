@@ -439,16 +439,17 @@
     }
   }
 }
-    .rolls_div, .sushi_div{
-    display: flex;
+  
+.rolls_div, .sushi_div{
+    display: none;
     flex-wrap: wrap;
     gap: 2rem;
     max-width: 80%;
     margin: auto;
     justify-content: center;
-    margin-bottom: 50px;
     margin-top: 100px;
 
+    
     h1{
       width: 100%;
       text-align: left;
@@ -461,14 +462,31 @@
     }
 }
 
+.more{
+    display: block;
+    margin: auto;
+    padding: 1rem 2rem;
+    background-color: #03b62af5;
+    color: #fff;
+    border: none;
+    border-radius: 1.25rem 1.25rem 1.5rem 1.25rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.33s;
+
+    &:hover {
+        background-color: #04a026f5;
+    }
+}
+
+.rolls_div{display: flex;}
 .sets_div, .drinks_div{
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     gap: 2rem;
     max-width: 100%;
     margin: auto;
     justify-content: center;
-    margin-bottom: 50px;
     margin-top: 100px;
 }
 
@@ -905,9 +923,9 @@
     <button data-ing="avocado">Авокадо</button>
 </div>
 </div>  
-<!-- СПИСОК ТОВАРІВ -->
+
+  <!-- РОЛИ -->
 <div class="rolls_div">
-                <h1>Роли</h1>
                 <div class="rd">
                     <img src="https://i.postimg.cc/MHXtPFxs/rolls1.png" alt="" />
                     <section>
@@ -1057,7 +1075,6 @@
 
 
             <div class="sushi_div">
-                <h1>Суші</h1>
                 <div class="sd">
                     <img src="https://i.postimg.cc/KjqcF46g/Sushi1.png" alt="" />
                     <section>
@@ -1203,7 +1220,6 @@
                     </section>
             </div>
             <div class="sets_div">
-                <h1>Сети</h1>
                 <div class="std">
                     <img src="https://i.postimg.cc/gjQ9NRFP/sets1.png" alt="" />
                     <section>
@@ -1352,7 +1368,6 @@
                                 
             </div>         
             <div class="drinks_div">
-                <h1>Напої</h1>
                 <div class="drd">
                     <img src="https://i.postimg.cc/qRqZSRxS/Drink1.png" alt="" />
                     <section>
@@ -1499,8 +1514,8 @@
                     </section>
                 </div>
             </div>
-
-</div>
+        </div>
+<button class="more">Дивитися більше</button>
 </main>
     <footer>
         <div>
