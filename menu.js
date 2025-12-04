@@ -1,20 +1,6 @@
-
-const moreBtn = document.querySelector('.more');
-const sushiDiv = document.querySelector('.sushi_div');
-const drinkDiv = document.querySelector('.drinks_div');
-const setsDiv = document.querySelector('.sets_div');
-const rollsDiv = document.querySelector('.rolls_div');
-moreBtn.addEventListener('click', () => {
-    sushiDiv.style.display = 'flex';
-    drinkDiv.style.display = 'flex';
-    setsDiv.style.display = 'flex';
-    moreBtn.style.display = 'none';
-});
-
-
 const categoryButtons = document.querySelectorAll("#categoryFilters button");
     const ingredientButtons = document.querySelectorAll("#ingredientFilters button");
-    const products = document.querySelectorAll(".products");
+    const products = document.querySelectorAll(".product");
 
     let activeCategory = "all";
     let activeIngredient = null;
@@ -29,7 +15,6 @@ const categoryButtons = document.querySelectorAll("#categoryFilters button");
             categoryButtons.forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
             activeCategory = btn.dataset.category;
-
             filterProducts();
         });
     });
@@ -51,16 +36,19 @@ const categoryButtons = document.querySelectorAll("#categoryFilters button");
     });
 
     function filterProducts() {
-        document.getElementsByClassName(".rd,.sd,.std,.drd").forEach(p => {
+        products.forEach(p => {
             let category = p.dataset.category;
             let ing = p.dataset.ing.split(" ");
           
             let okCategory = (activeCategory === "all" || activeCategory === category);
             let okIngredient = (!activeIngredient || ing.includes(activeIngredient));
 
-            p.style.display = (okCategory && okIngredient) ? "block" : "none";
+            p.style.display = (okCategory && okIngredient) ? "flex" : "none";
+            p.style.flexWrap = "wrap";
         });
     }
+
+filterProducts();
 
 let b2_txt = "";
 let b2price = 0;

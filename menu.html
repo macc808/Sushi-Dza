@@ -502,6 +502,7 @@
   border-radius: 1rem;
   padding: 0.5rem;
   width: 20rem;
+  display: none;
   /*   aspect-ratio: 2 / 3; */
   height: 20rem;
   max-height: fit-content;
@@ -854,6 +855,7 @@
   }
 }
 
+.rd { display: flex; }
 
     </style>
 </head>
@@ -910,7 +912,7 @@
     <button data-category="rolls">Роли</button>
     <button data-category="sushi">Суші</button>
     <button data-category="sets">Сети</button>
-    <button data-category="drinks">Напої</button>
+    <button data-category="drinks" data-ing="none">Напої</button>
 </div>
 
 <!-- ІНГРЕДІЄНТИ -->
@@ -925,9 +927,15 @@
 </div>  
 
   <!-- РОЛИ -->
-<div class="products" style="display: flex; flex-wrap: wrap;">
-<div class="rolls_div" style="margin-bottom: 2rem;">
-                <div class="rd" data-category="rolls">
+<div class="products" id="productList" style="display: flex; flex-wrap: wrap; margin:auto;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 80%;
+    margin: auto;
+    justify-content: center;
+    margin-top: 100px;">
+<!-- <div class="rolls_div" style="margin-bottom: 2rem;"> -->
+                <div class="rd product" data-category="rolls" data-ing="salmon avocado cheese">
                     <img src="https://i.postimg.cc/MHXtPFxs/rolls1.png" alt="" />
                     <section>
                         <h2>Філадельфія з лососем</h2>
@@ -946,7 +954,7 @@
                     </section>
                 </div>
                     
-                <div class="rd" data-category="rolls">
+                <div class="rd product" data-category="rolls" data-ing="eel cheese">
                     <img src="https://i.postimg.cc/MHXtPFxs/rolls2.png" alt="" />
                     <section>
                         <h2>Філадельфія з вугром</h2>
@@ -964,7 +972,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="rd" data-category="rolls">
+                <div class="rd product" data-category="rolls" data-ing="salmon tuna">
                     <img src="https://i.postimg.cc/cC6T9bZz/rolls3.png" alt="" />
                     <section>
                         <h2>Кратос</h2>
@@ -982,7 +990,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="rd" data-category="rolls">
+                <div class="rd product" data-category="rolls" data-ing="eel salmon cheese avocado">
                     <img src="https://i.postimg.cc/RhqGsD9y/rolls4.png" alt="" />
                     <section>
                         <h2>Ямамото</h2>
@@ -1000,7 +1008,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="rd" data-category="rolls">
+                <div class="rd product" data-category="rolls" data-ing="salmon eel avocado cheese">
                     <img src="https://i.postimg.cc/Fz1GWBm2/rolls5.png" alt="" />
                     <section>
                         <h2>Комбо Філадельфія</h2>
@@ -1018,7 +1026,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="rd" data-category="rolls">
+                <div class="rd product" data-category="rolls" data-ing="salmon tuna avocado">
                     <img src="https://i.postimg.cc/6qTzjmtt/rolls6.png" alt="" />
                     <section>
                         <h2>Мікаса</h2>
@@ -1036,7 +1044,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="rd" data-category="rolls">
+                <div class="rd product" data-category="rolls" data-ing="salmon cheese">
                     <img src="https://i.postimg.cc/D0m5jMn2/rolls7.png" alt="" />
                     <section>
                         <h2>Сирний з лососем</h2>
@@ -1054,7 +1062,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="rd" data-category="rolls">
+                <div class="rd product" data-category="rolls" data-ing="shrimp cheese">
                     <img src="https://i.postimg.cc/XqXxHz4n/rolls8.png" alt="" />
                     <section>
                         <h2>Запечена креветка</h2>
@@ -1072,11 +1080,11 @@
                         </div>
                     </section>
                 </div>
-            </div>
+            <!-- </div> -->
 
 
-            <div class="sushi_div">
-                <div class="sd" data-category="sushi" >
+            <!-- <div class="sushi_div"> -->
+                <div class="sd product" data-category="sushi" data-ing="salmon">
                     <img src="https://i.postimg.cc/KjqcF46g/Sushi1.png" alt="" />
                     <section>
                         <h2>Гункан лосось</h2>
@@ -1094,7 +1102,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="sd" data-category="sushi" >
+                <div class="sd product" data-category="sushi" data-ing="shrimp">
                     <img src="https://i.postimg.cc/QC4NsV2g/Sushi2.png" alt="" />
                     <section>
                         <h2>Гункан креветка</h2>
@@ -1112,7 +1120,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="sd" data-category="sushi" >
+                <div class="sd product" data-category="sushi" data-ing="tuna">
                     <img src="https://i.postimg.cc/nrRVZMyY/Sushi3.png" alt="" />
                     <section>
                         <h2>Нігірі тунець</h2>
@@ -1130,7 +1138,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="sd" data-category="sushi" >
+                <div class="sd product" data-category="sushi" data-ing="eel">
                     <img src="https://i.postimg.cc/0jW5xrTY/Sushi4.png" alt="" />
                     <section>
                         <h2>Нігірі вугор</h2>
@@ -1148,7 +1156,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="sd" data-category="sushi" >
+                <div class="sd product" data-category="sushi" data-ing="shrimp">
                     <img src="https://i.postimg.cc/kG1M9D0x/Sushi5.png" alt="" />
                     <section>
                         <h2>Нігірі креветка</h2>
@@ -1166,7 +1174,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="sd" data-category="sushi" >
+                <div class="sd product" data-category="sushi" data-ing="tuna">
                     <img src="https://i.postimg.cc/J067mtfp/Sushi6.png" alt="" />
                     <section>
                         <h2>Гункан тунець спайсі</h2>
@@ -1184,7 +1192,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="sd" data-category="sushi" >
+                <div class="sd product" data-category="sushi" data-ing="eel">
                     <img src="https://i.postimg.cc/PJ3fhNg6/Sushi7.png" alt="" />
                     <section>
                         <h2>Гункан вугор</h2>
@@ -1202,7 +1210,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="sd" data-category="sushi" >
+                <div class="sd product" data-category="sushi" data-ing="cheese">
                     <img src="https://i.postimg.cc/XqHN3XR1/Sushi8.png" alt="" />
                     <section>
                         <h2>Гункан з трюфелем</h2>
@@ -1220,8 +1228,9 @@
                         </div>
                     </section>
             </div>
-            <div class="sets_div">
-                <div class="std" data-category="sets">
+<!-- </div> -->
+            <!-- <div class="sets_div"> -->
+                <div class="std product" data-category="sets" data-ing="salmon tuna eel avocado">
                     <img src="https://i.postimg.cc/gjQ9NRFP/sets1.png" alt="" />
                     <section>
                         <h2>Сет "Класичний"</h2>
@@ -1240,7 +1249,7 @@
                     </section>
                 </div>
                     
-                <div class="std" data-category="sets">
+                <div class="std product" data-category="sets" data-ing="eel tuna salmon avocado">
                     <img src="https://i.postimg.cc/MZF86kcT/sets2.png" alt="" />
                     <section>
                         <h2>Сет "Делюкс"</h2>
@@ -1258,7 +1267,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="std" data-category="sets">
+                <div class="std product" data-category="sets" data-ing="salmon eel tuna shrimp avocado">
                     <img src="https://i.postimg.cc/3rcH8Myw/sets3.png" alt="" />
                     <section>
                         <h2>Сет "Філадельфія"</h2>
@@ -1276,7 +1285,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="std" data-category="sets">
+                <div class="std product" data-category="sets" data-ing="salmon tuna eel">
                     <img src="https://i.postimg.cc/dQxKsM7L/sets4.png" alt="" />
                     <section>
                         <h2>Сет "Осака"</h2>
@@ -1294,7 +1303,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="std" data-category="sets">
+                <div class="std product" data-category="sets" data-ing="salmon">
                     <img src="https://i.postimg.cc/9Xnjm340/sets5.png" alt="" />
                     <section>
                         <h2>Суші лосось в норі</h2>
@@ -1312,7 +1321,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="std" data-category="sets">
+                <div class="std product" data-category="sets" data-ing="salmon tuna eel shrimp avocado cheese">
                     <img src="https://i.postimg.cc/nVPtF8sX/sets6.png" alt="" />
                     <section>
                         <h2>Сет "Мега"</h2>
@@ -1330,7 +1339,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="std" data-category="sets">
+                <div class="std product" data-category="sets" data-ing="salmon eel shrimp avocado">
                     <img src="https://i.postimg.cc/h45qDFJ7/sets7.png" alt="" />
                     <section>
                         <h2>Сет "Сімейний"</h2>
@@ -1348,7 +1357,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="std" data-category="sets">
+                <div class="std product" data-category="sets" data-ing="truffle caviar salmon tuna eel">
                     <img src="https://i.postimg.cc/wxGdqKtN/sets8.png" alt="" />
                     <section>
                         <h2>Гункан Сет</h2>
@@ -1367,9 +1376,9 @@
                     </section>
                 </div>
                                 
-            </div>         
-            <div class="drinks_div">
-                <div class="drd" data-category="drinks">
+            <!-- </div> -->
+            <!-- <div class="drinks_div"> -->
+                <div class="drd product" data-category="drinks" data-ing="none">
                     <img src="https://i.postimg.cc/qRqZSRxS/Drink1.png" alt="" />
                     <section>
                         <h2>Sprite</h2>
@@ -1388,7 +1397,7 @@
                     </section>
                 </div>
                     
-                <div class="drd" data-category="drinks">
+                <div class="drd product" data-category="drinks" data-ing="none">
                     <img src="https://i.postimg.cc/d13Sp19K/Drink2.png" alt="" />
                     <section>
                         <h2>Coca-Cola</h2>
@@ -1406,7 +1415,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="drd" data-category="drinks">
+                <div class="drd product" data-category="drinks" data-ing="none">
                     <img src="https://i.postimg.cc/RFhbyFTx/Drink3.png" alt="" />
                     <section>
                         <h2>Fanta</h2>
@@ -1424,7 +1433,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="drd" data-category="drinks">
+                <div class="drd product" data-category="drinks" data-ing="none">
                     <img src="https://i.postimg.cc/vBTSkBvs/Drink4.png" alt="" />
                     <section>
                         <h2>Моршинська</h2>
@@ -1442,7 +1451,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="drd" data-category="drinks">
+                <div class="drd product" data-category="drinks" data-ing="none">
                     <img src="https://i.postimg.cc/W3zfC37j/Drink5.png" alt="" />
                     <section>
                         <h2>Burn</h2>
@@ -1460,7 +1469,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="drd" data-category="drinks">
+                <div class="drd product" data-category="drinks" data-ing="none">
                     <img src="https://i.postimg.cc/V6vHp6FY/Drink6.png" alt="" />
                     <section>
                         <h2>Coca-Cola Vanilla</h2>
@@ -1478,7 +1487,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="drd" data-category="drinks">
+                <div class="drd product" data-category="drinks" data-ing="none">
                     <img src="https://i.postimg.cc/pTr14TBL/Drink7.png" alt="" />
                     <section>
                         <h2>Dr Pepper Cherry</h2>
@@ -1496,7 +1505,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="drd" data-category="drinks">
+                <div class="drd product" data-category="drinks" data-ing="none">
                     <img src="https://i.postimg.cc/zBvP6BkD/Drink8.png" alt="" />
                     <section>
                         <h2>Dr Pepper</h2>
@@ -1517,7 +1526,6 @@
             </div>
         </div>
     </div>
-<button class="more">Дивитися більше</button>
 </main>
     <footer>
         <div>
