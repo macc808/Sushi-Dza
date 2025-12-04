@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Меню</title>
+
+    <style>
+        header{
+            justify-content: center;
+            display: block;
+            width: 100%;
+            justify-items: center;
+            margin-bottom: 15rem;
+            }
+
+            nav {
+            --nav-bg: #fff;
+            --text-color: #000;
+            border: none;
+            text-align: center;
+            justify-content: center;
+            margin: auto;
+            max-width: 85%;
+            z-index: 3; 
+            padding: 0rem 2rem 0 2rem;
+            width: fit-content;
+            
+            /* Додаємо стилі для стрілки */
+            .toggle-arrow {
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--text-color);
+                margin: 0.5rem auto;
+                display: block;
+                transition: transform 0.3s;
+            }
+            
+            .toggle-arrow:hover {
+                transform: scale(1.1);
+            }
+            
+            /* Приховуємо article за замовчуванням */
+            .categories {
+                display: none; /* Прихований за замовчуванням */
+                flex-direction: row; /* Змінюємо на колонку для мобільності, якщо потрібно */
+                gap: 1rem;
+                max-width: fit-content;
+                margin: auto;
+                margin-top: 1rem;
+                padding: 1rem 1rem 1rem 1rem;
+                background: var(--nav-bg);
+                border-radius: 30px;
+                box-shadow: 0.5rem 1rem 1rem rgba(0, 0, 0, 0.1);
+            }
+            
+            /* Клас для відкритого стану */
+            .categories.open {
+                display: flex; /* Показуємо при відкритті */
+            }
+            
+            /* Решта стилів залишаються */
+            div {
+                display: flex;
+                gap: 2rem;
+                justify-content: center;
+                text-align: center;
+                margin: auto;
+                background: var(--nav-bg);
+                border-radius: 30px;
+                box-shadow: 0.5rem 1rem 1rem rgba(0, 0, 0, 0.1);
+                
+                p {
+                font-family: "Didact Gothic", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+                display: flex;
+                justify-content: center;
+                margin: auto;
+                }
+                
+                img {
+                width: 1.5rem;
+                height: 1.5rem;
+                }
+                
+                span {
+                display: flex;
+                gap: 0;
+                justify-content: center;
+                text-align: center;
+                margin: auto;
+                }
+                
+                .phone_img {
+                width: 2rem;
+                height: 2rem;
+                }
+                
+                h1 {
+                font-family: "Permanent Marker", cursive;
+                font-weight: 400;
+                font-style: normal;
+                color: var(--text-color);
+                }
+                
+                a {
+                color: var(--a-text-color);
+                text-decoration: none;
+                font-size: 1.7rem;
+                gap: 2rem;
+                margin: auto;
+                font-family: "Didact Gothic", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+                padding: 0.5rem 1rem 0.5rem 1rem;
+                transition: all 0.3s;
+
+
+                &:hover {
+                    background-color: #eeecec;
+                    border-radius: 20px;
+                }
+                }
+            }
+            
+            .logo_img {
+                width: 4rem;
+                height: 6rem;
+                gap: 0;
+                margin-left: 0;
+            }
+            
+            .bin {
+                display: flex;
+                justify-content: center;
+                margin: auto;
+                padding: 0.5rem;
+                gap: 0.5rem;
+                border-radius: 30px;
+                background-color: #eaeaeaf2;
+                outline: 1px #fff;
+                border: 1px solid #0000;
+                border-radius: 1.25rem 1.25rem 1.5rem 1.25rem;
+                font-size: 1rem;
+                padding: 1rem 2rem 1rem 1.5rem;
+                translate: 1rem;
+                transition: background 0.33s;
+                outline-offset: 1px;
+                position: relative;
+                
+                &:hover {
+                background-color: #d3d3d3f2;
+                transition: all 0.5s;
+                }
+            }
+            }
+
+            /* Стилі для article (категорій) */
+
+            .categories a {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 3rem;
+            text-decoration: none;
+            font-size: 1rem;
+            color: var(--a-text-color);
+            font-family: "Didact Gothic", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            text-align: center;
+            justify-content: center;
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            transition: all 0.3s;
+            
+                    
+            .ri{
+                width: 1.5rem;
+                height: 2rem;
+            }
+
+            &:hover {
+                background-color: #eeecec;
+                border-radius: 25px;
+            }
+            
+            .rolls img {
+                height: 2rem;
+                width: 1.5rem;
+            }
+            
+            img {
+                text-align: center;
+                width: 2rem;
+                height: 2rem;
+            }
+            }
+        body {
+            background: #fff;
+            font-family: Arial;
+            margin: 0;
+        }
+
+        /* Категорії */
+        .filters {
+            display: flex;
+            gap: 10px;
+            padding: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .filters button {
+            padding: 10px 20px;
+            background: #333;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .filters button.active {
+            background: #ff9800;
+            color: #000;
+        }
+
+        /* Товари */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .product {
+            background: #222;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .product img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .product h3 {
+            margin: 10px 0 5px;
+            font-size: 18px;
+        }
+        footer{
+  display: flex;
+  width: 110%;
+  background-color: #f5f5f5;
+  padding: 3rem 2rem;
+  margin-top: 5rem;
+  font-family: "Didact Gothic", sans-serif;
+  gap: 2rem;
+
+  img{
+    width: 4rem;
+    height: 6rem;
+  }
+
+  > div {
+    display: flex;
+    width: 100%;
+    gap: 3rem;
+    justify-content: space-between;
+    margin: auto;
+    max-width: fit-content;
+    
+
+    > div:first-child {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      min-width: 15rem;
+
+      img {
+        width: 3rem;
+        height: 3rem;
+      }
+
+      h3 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: #000;
+      }
+
+      p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #666;
+      }
+    }
+
+    > section {
+      display: flex;
+      gap: 4rem;
+      flex: 1;
+      flex-wrap: wrap;
+
+      
+
+      > div {
+        display: flex;
+        flex-direction: row;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+
+
+        
+        p {
+          margin: 0;
+
+          span {
+            display: block;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 0.5rem;
+
+            &:not(:first-child) {
+              font-weight: 400;
+              font-size: 0.95rem;
+              color: #666;
+            }
+          }
+
+          a {
+            display: block;
+            color: #000;
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+            transition: color 0.3s;
+
+            &:hover {
+              color: #00CC2D;
+            }
+          }
+        }
+      }
+
+      > div:nth-child(4) {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        min-width: 12rem;
+
+        > div {
+          display: flex;
+          gap: 0.5rem;
+          align-items: center;
+
+          img {
+            width: 1.5rem;
+            height: 1.5rem;
+          }
+        }
+
+        > div:last-child {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+
+          h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #000;
+          }
+
+          p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+          }
+
+          a {
+            color: #00CC2D;
+            text-decoration: none;
+            font-size: 0.9rem;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+        }   
+
+      > div:nth-child(5) {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-end;
+
+        h2 {
+          margin: 0;
+          font-size: 1.5rem;
+          color: #000;
+        }
+
+        p {
+          margin: 0;
+          font-size: 0.9rem;
+          color: #666;
+          text-align: right;
+        }
+
+        a {
+          color: #00CC2D;
+          text-decoration: none;
+          font-size: 0.9rem;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        > div {
+          display: flex;
+          gap: 1rem;
+        }
+
+        img {
+          width: 1.5rem;
+          height: 1.5rem;
+          cursor: pointer;
+          transition: transform 0.2s ease-out;
+          backface-visibility: hidden;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+}
+    .rolls_div, .sushi_div{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 80%;
+    margin: auto;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 100px;
+
+    h1{
+      width: 100%;
+      text-align: left;
+      font-family: "Didact Gothic", sans-serif;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 3rem;
+      color: #000;
+      margin-left: 3rem;
+    }
+}
+
+.sets_div, .drinks_div{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 100%;
+    margin: auto;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 100px;
+}
+
+
+.rd, .sd, .std, .drd {
+  --bg: #fff;
+  --title-color: #fff;
+  --title-color-hover: #000;
+  --text-color: #666;
+  --button-color: #b8fbc6;
+  --button-color-hover: #aff5bf;
+  background: var(--bg);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  width: 20rem;
+  /*   aspect-ratio: 2 / 3; */
+  height: 20rem;
+  max-height: fit-content;
+  overflow: clip;
+  position: relative;
+  font-family: Lato, Montserrat, Helvetica, Arial, sans-serif;
+  transition: padding-bottom 0.5s linear;  
+  box-shadow: 0.3rem 1rem 1rem rgba(0, 0, 0, 0.1);
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: calc(100% - 1rem);
+    height: 30%;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    mask: linear-gradient(#0000, #000f 80%);
+    /* backdrop-filter: blur(1rem); */
+    border-radius: 0 0 1.5rem 1.5rem;
+    will-change: transform;
+
+    
+        
+  }
+
+  > img {
+    max-width: 100%;
+    aspect-ratio: 4.5 / 5;
+    object-fit: cover;
+    object-position: 50% 5%;
+    border-radius: 1.5rem;
+    display: block;
+    transition: object-position 0.3s ease-out;
+    /* firefox patch */
+    width: 100%;
+    height: auto;
+    will-change: object-position;
+
+    
+  }
+
+  > section {
+    margin: 1rem;
+    height: calc(33.3333% - 1rem);
+    display: flex;
+    flex-direction: column;
+
+    .weight {
+      color: #f6822a;
+    }
+
+    .price {
+      font-size: 2rem;
+    }
+    .grn {
+      color: #666;
+    }
+
+    h2 {
+      margin: 0;
+      margin-block-end: 1rem;
+      font-size: 1.5rem;
+      opacity: 1;
+      color: var(--title-color);
+      transition: color 0.3s ease-out;
+      text-decoration: none;
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.3;
+      color: var(--text-color);
+      opacity: 0;
+      margin: 0;
+      
+      transition: opacity 0.3s ease-out 0.1s;
+    }
+
+      > div {
+        flex: 1;
+        align-items: flex-end;
+        display: flex;
+        justify-content: space-between;
+        opacity: 0;
+        transition: opacity 0.3s ease-out;      .tag {
+        align-self: center;
+        color: var(--title-color-hover);
+      }
+
+      .button {
+        border: none;
+        border-radius: 1.25rem 1.25rem 1.5rem 1.25rem;
+        font-size: 1rem;
+        padding: 1rem 2rem 1rem 1.5rem;
+        translate: 1rem;
+        background: var(--button-color);
+        transition: background 0.33s;
+        outline-offset: 1px;
+        position: relative;
+        color: var(--title-color-hover);
+        /* specific to demo */
+        width: auto;
+        text-align: right;
+
+        &::before,
+        &::after {
+          content: "";
+          width: 0.85rem;
+          height: 0.1rem;
+          background: currentcolor;
+          position: absolute;
+          top: 50%;
+          left: 1.33rem;
+          border-radius: 1rem;
+        }
+
+        &::after {
+          rotate: 90deg;
+          transition: rotate 0.15s;
+        }
+
+        &.following {
+          &::after {
+            rotate: 0deg;
+          }
+        }
+
+        &:hover {
+          background: var(--button-color-hover);
+        }
+
+        &:focus {
+          outline: 2px solid #73c986;
+        }
+      }
+    }
+  }
+
+  &:hover, &:focus-within {
+    padding-bottom:15rem;
+
+    &::before {
+      transform: translateY(100%);
+    }
+
+    > img {
+      aspect-ratio: 1 / 1;
+      object-position: 50% 10%;
+      transition: object-position 0.2s ease-out;
+    }
+
+    > section {
+      h2, p {
+        margin-block-end: 0.5rem;
+        opacity: 1;
+      }
+
+      h2 {
+        color: var(--title-color-hover);
+      }
+
+      > div {
+        opacity: 1;
+        transition: opacity 0.3s ease-out 0.15s;
+      }
+
+    }
+  }
+}
+
+
+
+/* Like button styles and animation */
+.like {
+  display: inline-grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  padding: 0;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #ffffff;
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.18s ease, color 0.18s ease, background-color 0.18s ease;
+  color: #000;
+  font-size: 2rem;
+  line-height: 1;
+  user-select: none;
+}
+
+.like::before {
+  content: '♡';
+  display: inline-block;
+  transform-origin: center;
+  transition: transform 0.18s ease, color 0.18s ease, text-shadow 0.18s ease;
+  color: inherit;
+}
+
+.like:hover { transform: scale(1.05); }
+
+.like:active { transform: scale(0.98); }
+
+.like.liked {
+  color: #e53935;
+}
+
+.like.liked::before {
+  content: '♥';
+  transform: scale(1.12);
+  text-shadow: 0 0 8px rgba(229,57,53,0.28);
+}
+
+@keyframes like-pop {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.25); }
+  100% { transform: scale(1.12); }
+}
+
+.like.liked::before { animation: like-pop 220ms ease forwards; }
+
+/* Cart overlay and sliding panel */
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+  z-index: 60;
+}
+.cart-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cart-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 95%;
+  width: fit-content;
+  max-width: 100%;
+  background: #fff;
+  box-shadow: -12px 0 30px rgba(0,0,0,0.15);
+  transform: translateX(110%);
+  transition: transform 300ms cubic-bezier(.2,.9,.25,1);
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  font-family:"Didact Gothic", sans-serif;
+}
+.cart-panel.open { transform: translateX(0); }
+
+.cart-panel header {
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+.cart-panel .cart-items {
+  flex: 1 1 auto;
+  overflow: auto;
+  padding-right: 0.5rem;
+}
+.cart-item {
+  display:flex;
+  gap: 0.75rem;
+  align-items:center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  font-size: 2rem;
+}
+.cart-item img {width: 8rem; height:8rem; object-fit:cover; border-radius:6px; }
+.cart-item .meta { flex:1; }
+.cart-item .meta h4 { margin:0; font-size:1.3rem; font-family:"Didact Gothic", sans-serif;}
+.cart-item .meta .qty { font-size:0.85rem; color:#555; font-family:"Didact Gothic", sans-serif;}
+.cart-item .remove { background:transparent; border:none; color:#d32f2f; cursor:pointer; font-size:1rem; font-family:"Didact Gothic", sans-serif; }
+
+.cart-footer { padding-top:0.75rem; border-top:1px solid rgba(0,0,0,0.06); display:flex; flex-direction:column; gap:0.5rem; font-size: 1.6rem;}
+.cart-footer .total { display:flex; justify-content:space-between; font-weight:700; }
+.cart-panel .close-btn { background:transparent; border:none; font-size:1.7rem; font-family:"Didact Gothic", sans-serif; cursor:pointer; }
+.cart-footer .checkout{
+  background-color: #03b62af5;
+
+  &:hover {
+    background-color: #04a026f5;
+  }
+}
+.cart-footer button {
+  background:#f6822ae5;
+  color:#fff;
+  border:none;
+  border-radius:1.25rem 1.25rem 1.5rem 1.25rem;
+  padding:1rem 2rem 1rem 1.5rem;
+  font-size:1.2rem;
+  cursor:pointer;
+  transition:background 0.33s;
+
+  &:hover {
+    background:#d86f1fe5;
+  }
+}
+
+
+    </style>
+</head>
+
+<body>
+    <header>
+            <nav style="position: fixed;">
+        <div>
+            <span>
+                <img class="logo_img" src="https://i.postimg.cc/TP3rhQfF/Su-Shi-Dza-logo-removebg-preview.png" alt="">
+                <h1 class="logo_txt">SushiDza</h1>
+            </span>
+            <a class="nav_txt" style="background-color: #eeecec; border-radius:20px;" href="">Головна</a>
+            <a class="nav_txt" href="">Доставка</a>
+            <a class="nav_txt" href="">Про нас</a>
+            <a class="nav_txt" href="">Новини</a>
+            <p>
+                <img class="phone_img" src="https://i.postimg.cc/BQs3YZ5s/phone-ico.png" alt="">
+                <span>+38 (098) 566 8482</span>
+            </p>
+            <button class="bin">
+                <span>Кошик</span>
+                <img src="https://i.postimg.cc/6p6Sky10/Ikonka.png" alt="">
+            </button>
+            <br/>
+        </div>
+        <!-- Додаємо кнопку зі стрілкою для toggle article -->
+        <button class="toggle-arrow" aria-label="Toggle categories">▼</button>
+        <article class="categories">
+            <a href="" class="rolls">
+                <img class="ri" src="https://i.postimg.cc/bwvY602k/categ1.png" alt="">
+                <span>Роли</span>
+            </a>
+            <a href="" class="sushi">
+                <img src="https://i.postimg.cc/Z5qYfPyj/categ2.png" alt="">
+                <span>Суші</span>
+            </a>
+            <a href="" class="sets">
+                <img src="https://i.postimg.cc/K8Yc97g0/categ3.png" alt="">
+                <span>Сети</span>
+            </a>
+            <a href="" class="drinks">
+                <img src="https://i.postimg.cc/7ZLPB1T9/categ4.png" alt="">
+                <span>Напої</span>
+            </a>
+        </article>
+        </nav>
+    </header>
+
+<!-- КАТЕГОРІЇ -->
+<div class="filters" id="categoryFilters">
+    <button data-category="all" class="active">Усе</button>
+    <button data-category="rolls">Роли</button>
+    <button data-category="sushi">Суші</button>
+    <button data-category="sets">Сети</button>
+    <button data-category="drinks">Напої</button>
+</div>
+
+<!-- ІНГРЕДІЄНТИ -->
+<div class="filters" id="ingredientFilters">
+    <button data-ing="salmon">Лосось</button>
+    <button data-ing="tuna">Тунець</button>
+    <button data-ing="shrimp">Креветка</button>
+    <button data-ing="eel">Вугор</button>
+    <button data-ing="cheese">Сир</button>
+    <button data-ing="avocado">Авокадо</button>
+</div>
+
+<!-- СПИСОК ТОВАРІВ -->
+<div class="rolls_div">
+                <h1>Роли</h1>
+                <div class="rd">
+                    <img src="https://i.postimg.cc/MHXtPFxs/rolls1.png" alt="" />
+                    <section>
+                        <h2>Філадельфія з лососем</h2>
+                        <p><span class="weight">Вага: 320 г</span><br/>
+                            Норі, рис, лосось, вершковий сир, огірок, авокадо
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">450</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                    
+                <div class="rd">
+                    <img src="https://i.postimg.cc/MHXtPFxs/rolls2.png" alt="" />
+                    <section>
+                        <h2>Філадельфія з вугром</h2>
+                        <p><span class="weight">Вага: 320 г</span><br/>
+                            Норі, рис, вугор, вершковий сир, огірок, соус унагі
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">480</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="rd">
+                    <img src="https://i.postimg.cc/cC6T9bZz/rolls3.png" alt="" />
+                    <section>
+                        <h2>Кратос</h2>
+                        <p><span class="weight">Вага: 310 г</span><br/>
+                            Норі, рис, лосось, тунець, краб-мікс, соус спайсі, ікра масаго
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">420</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="rd">
+                    <img src="https://i.postimg.cc/RhqGsD9y/rolls4.png" alt="" />
+                    <section>
+                        <h2>Ямамото</h2>
+                        <p><span class="weight">Вага: 330 г</span><br/>
+                            Норі, рис, вугор, лосось, вершковий сир, авокадо, соус унагі
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">460</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="rd">
+                    <img src="https://i.postimg.cc/Fz1GWBm2/rolls5.png" alt="" />
+                    <section>
+                        <h2>Комбо Філадельфія</h2>
+                        <p><span class="weight">Вага: 350 г</span><br/>
+                            Норі, рис, лосось, вугор, вершковий сир, огірок, авокадо
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">440</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="rd">
+                    <img src="https://i.postimg.cc/6qTzjmtt/rolls6.png" alt="" />
+                    <section>
+                        <h2>Мікаса</h2>
+                        <p><span class="weight">Вага: 315 г</span><br/>
+                            Норі, рис, тунець, лосось, авокадо, соус спайсі
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">430</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="rd">
+                    <img src="https://i.postimg.cc/D0m5jMn2/rolls7.png" alt="" />
+                    <section>
+                        <h2>Сирний з лососем</h2>
+                        <p><span class="weight">Вага: 235 г</span><br/>
+                            Норі, рис, лосось, вершковий сир, сирний соус, зелена цибуля
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">390</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="rd">
+                    <img src="https://i.postimg.cc/XqXxHz4n/rolls8.png" alt="" />
+                    <section>
+                        <h2>Запечена креветка</h2>
+                        <p><span class="weight">Вага: 325 г</span><br/>
+                            Норі, рис, креветка тигрова, вершковий сир, соус для запекання, ікра тобіко
+                        </p>
+                        <div>
+                        <div class="card_down">
+                            <span class="price">470</span><span class="grn"> грн</span>
+                        </div>
+                        <aside style="display: flex; gap: 0.1rem; ">
+                            <button class="like"></button>
+                            <button class="button"></button>
+                        </aside>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+
+            <div class="sushi_div">
+                <h1>Суші</h1>
+                <div class="sd">
+                    <img src="https://i.postimg.cc/KjqcF46g/Sushi1.png" alt="" />
+                    <section>
+                        <h2>Гункан лосось</h2>
+                        <p><span class="weight">Вага: 40 г</span><br/>
+                           Норі, рис, лосось, майонез, ікра масаго
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">85</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="sd">
+                    <img src="https://i.postimg.cc/QC4NsV2g/Sushi2.png" alt="" />
+                    <section>
+                        <h2>Гункан креветка</h2>
+                        <p><span class="weight">Вага: 40 г</span><br/>
+                           Норі, рис, креветка, майонез, соус спайсі
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">80</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="sd">
+                    <img src="https://i.postimg.cc/nrRVZMyY/Sushi3.png" alt="" />
+                    <section>
+                        <h2>Нігірі тунець</h2>
+                        <p><span class="weight">Вага: 40 г</span><br/>
+                           Рис, тунець, соус спайсі
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">90</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="sd">
+                    <img src="https://i.postimg.cc/0jW5xrTY/Sushi4.png" alt="" />
+                    <section>
+                        <h2>Нігірі вугор</h2>
+                        <p><span class="weight">Вага: 252 г</span><br/>
+                           Рис, вугор, норі, кунжут
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">320</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="sd">
+                    <img src="https://i.postimg.cc/kG1M9D0x/Sushi5.png" alt="" />
+                    <section>
+                        <h2>Нігірі креветка</h2>
+                        <p><span class="weight">Вага: 40 г</span><br/>
+                           Рис, креветка
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">95</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="sd">
+                    <img src="https://i.postimg.cc/J067mtfp/Sushi6.png" alt="" />
+                    <section>
+                        <h2>Гункан тунець спайсі</h2>
+                        <p><span class="weight">Вага: 40 г</span><br/>
+                           Норі, рис, тунець, соус спайсі, зелена цибуля
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">85</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="sd">
+                    <img src="https://i.postimg.cc/PJ3fhNg6/Sushi7.png" alt="" />
+                    <section>
+                        <h2>Гункан вугор</h2>
+                        <p><span class="weight">Вага: 40 г</span><br/>
+                           Норі, рис, вугор, соус унагі, кунжут
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">90</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="sd">
+                    <img src="https://i.postimg.cc/XqHN3XR1/Sushi8.png" alt="" />
+                    <section>
+                        <h2>Гункан з трюфелем</h2>
+                        <p><span class="weight">Вага: 40 г</span><br/>
+                           Рис, норі, вершковий сир, трюфель
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">80</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+            </div>
+            <div class="sets_div">
+                <h1>Сети</h1>
+                <div class="std">
+                    <img src="https://i.postimg.cc/gjQ9NRFP/sets1.png" alt="" />
+                    <section>
+                        <h2>Сет "Класичний"</h2>
+                        <p><span class="weight">Вага: 950 г</span><br/>
+                            Роли Філадельфія, Каліфорнія, суші з лососем, вугрем, тунцем
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">1250</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                    
+                <div class="std">
+                    <img src="https://i.postimg.cc/MZF86kcT/sets2.png" alt="" />
+                    <section>
+                        <h2>Сет "Делюкс"</h2>
+                        <p><span class="weight">Вага: 895 г</span><br/>
+                            Преміум роли з лососем, вугрем, тунцем, гункани з ікрою
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">1100</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="std">
+                    <img src="https://i.postimg.cc/3rcH8Myw/sets3.png" alt="" />
+                    <section>
+                        <h2>Сет "Філадельфія"</h2>
+                        <p><span class="weight">Вага: 800 г</span><br/>
+                            Чотири види Філадельфії з лососем, вугрем, тунцем, креветкою
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">1350</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="std">
+                    <img src="https://i.postimg.cc/dQxKsM7L/sets4.png" alt="" />
+                    <section>
+                        <h2>Сет "Осака"</h2>
+                        <p><span class="weight">Вага: 252 г</span><br/>
+                            Міні-сет: нігірі з лососем, вугрем, гункан з тунцем
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">480</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="std">
+                    <img src="https://i.postimg.cc/9Xnjm340/sets5.png" alt="" />
+                    <section>
+                        <h2>Суші лосось в норі</h2>
+                        <p><span class="weight">Вага: 1600 г</span><br/>
+                            Великий сет з лососем: роли, суші, гункани з різними соусами
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">1850</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="std">
+                    <img src="https://i.postimg.cc/nVPtF8sX/sets6.png" alt="" />
+                    <section>
+                        <h2>Сет "Мега"</h2>
+                        <p><span class="weight">Вага: 1400 г</span><br/>
+                            Гігантський сет: 8 видів ролів, нігірі, гункани з морепродуктами
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">1650</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="std">
+                    <img src="https://i.postimg.cc/h45qDFJ7/sets7.png" alt="" />
+                    <section>
+                        <h2>Сет "Сімейний"</h2>
+                        <p><span class="weight">Вага: 1350 г</span><br/>
+                            Ідеальний для сім'ї: роли, суші, салат з лосося, запечені роли
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">1550</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="std">
+                    <img src="https://i.postimg.cc/wxGdqKtN/sets8.png" alt="" />
+                    <section>
+                        <h2>Гункан Сет</h2>
+                        <p><span class="weight">Вага: 1400 г</span><br/>
+                            Ексклюзивні гункани: з трюфелем, ікрою, лососем, тунцем, вугрем
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">1200</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                                
+            </div>         
+            <div class="drinks_div">
+                <h1>Напої</h1>
+                <div class="drd">
+                    <img src="https://i.postimg.cc/qRqZSRxS/Drink1.png" alt="" />
+                    <section>
+                        <h2>Sprite</h2>
+                        <p><span class="weight">Об'єм: 0,5 л</span><br/>
+                            Освіжаючий цитрусовий газований напій
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">45</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                    
+                <div class="drd">
+                    <img src="https://i.postimg.cc/d13Sp19K/Drink2.png" alt="" />
+                    <section>
+                        <h2>Coca-Cola</h2>
+                        <p><span class="weight">Об'єм: 0,25 л</span><br/>
+                            Класична газована вода з оригінальним смаком
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">55</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="drd">
+                    <img src="https://i.postimg.cc/RFhbyFTx/Drink3.png" alt="" />
+                    <section>
+                        <h2>Fanta</h2>
+                        <p><span class="weight">Об'єм: 0,5 л</span><br/>
+                            Апельсиновий газований напій з яскравим смаком
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">40</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="drd">
+                    <img src="https://i.postimg.cc/vBTSkBvs/Drink4.png" alt="" />
+                    <section>
+                        <h2>Моршинська</h2>
+                        <p><span class="weight">Об'єм: 0,5 л</span><br/>
+                            Природна мінеральна вода без газу
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">65</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="drd">
+                    <img src="https://i.postimg.cc/W3zfC37j/Drink5.png" alt="" />
+                    <section>
+                        <h2>Burn</h2>
+                        <p><span class="weight">Об'єм: 0,5 л</span><br/>
+                            Енергетичний напій з помірним вмістом кофеїну
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">50</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="drd">
+                    <img src="https://i.postimg.cc/V6vHp6FY/Drink6.png" alt="" />
+                    <section>
+                        <h2>Coca-Cola Vanilla</h2>
+                        <p><span class="weight">Об'єм: 0,33 л</span><br/>
+                            Кока-кола з ніжними нотами ванілі
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">60</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="drd">
+                    <img src="https://i.postimg.cc/pTr14TBL/Drink7.png" alt="" />
+                    <section>
+                        <h2>Dr Pepper Cherry</h2>
+                        <p><span class="weight">Об'єм: 0,33 л</span><br/>
+                            Унікальний напій з вишневим смаком
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">60</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="drd">
+                    <img src="https://i.postimg.cc/zBvP6BkD/Drink8.png" alt="" />
+                    <section>
+                        <h2>Dr Pepper</h2>
+                        <p><span class="weight">Об'єм: 0,33 л</span><br/>
+                            Класичний напій з оригінальним смаком
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">55</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+</div>
+    <footer>
+        <div>
+            <section>
+                <div style="width: 15rem ;">
+                    <img class="logo_img" src="https://i.postimg.cc/TP3rhQfF/Su-Shi-Dza-logo-removebg-preview.png" alt="">
+                    <h3 class="logo_txt">SushiDza</h3>
+                    <p>© SushiDza. Всі права захищені.</p>
+                </div>
+                <div>
+                    <p>
+                        <span>Навігація</span>
+                        <a class="fnav_txt" href="">Головна</a>
+                        <a class="fnav_txt" href="">Доставка</a>
+                        <a class="fnav_txt" href="">Про нас</a>
+                        <a class="fnav_txt" href="">Новини</a>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <span>Оформити замовлення</span>
+                        <a href="">+38 (098) 566 8482</a>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <span>Години роботи</span>
+                        <span>
+                            З 10:00 до 22:30 у будні <br/>
+                            З 10:00 до 20:00 у вихідні
+                        </span>
+                        <span>Нічні доставки</span>
+                    </p>
+                </div>
+            </section>
+        </div>
+    </footer>
+
+
+<script>
+    const categoryButtons = document.querySelectorAll("#categoryFilters button");
+    const ingredientButtons = document.querySelectorAll("#ingredientFilters button");
+    const products = document.querySelectorAll(".product");
+
+    let activeCategory = "all";
+    let activeIngredient = null;
+
+    // ФІЛЬТР ДЛЯ КАТЕГОРІЙ
+    categoryButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            categoryButtons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            activeCategory = btn.dataset.category;
+
+            filterProducts();
+        });
+    });
+
+    // ФІЛЬТР ДЛЯ ІНГРЕДІЄНТІВ
+    ingredientButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (activeIngredient === btn.dataset.ing) {
+                activeIngredient = null;
+                btn.classList.remove("active");
+            } else {
+                ingredientButtons.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                activeIngredient = btn.dataset.ing;
+            }
+
+            filterProducts();
+        });
+    });
+
+    function filterProducts() {
+        products.forEach(p => {
+            let category = p.dataset.category;
+            let ing = p.dataset.ing.split(" ");
+
+            let okCategory = (activeCategory === "all" || activeCategory === category);
+            let okIngredient = (!activeIngredient || ing.includes(activeIngredient));
+
+            p.style.display = (okCategory && okIngredient) ? "block" : "none";
+        });
+    }
+
+document.addEventListener('DOMContentLoaded', function(){
+  // ... існуючий код ...
+  random_banner2_img(1, 9);
+  // Додаємо toggle для article при кліку на стрілку
+  const toggleArrow = document.querySelector('.toggle-arrow');
+  const categories = document.querySelector('.categories');
+  if (toggleArrow && categories) {
+    toggleArrow.addEventListener('click', function() {
+      categories.classList.toggle('open');
+      // Змінюємо стрілку (наприклад, ▼ на ▲)
+      toggleArrow.textContent = categories.classList.contains('open') ? '▲' : '▼';
+    });
+  }
+  
+  // ... решта існуючого коду ...
+});
+
+const buttons = [...document.getElementsByClassName("button")];
+buttons.forEach(button => {
+  globalThis.button = button; // for use in removeFromCart
+  button.addEventListener("click", function() {
+    button.classList.toggle("following");
+    button.textContent = button.classList.contains("following") ? "" : "";
+  })
+  // ensure a `.like` button exists immediately before each `.button`
+  if (!button.previousElementSibling || !button.previousElementSibling.classList.contains('like')) {
+    const likeEl = document.createElement('button');
+    likeEl.className = 'like';
+    likeEl.setAttribute('aria-pressed', 'false');
+    likeEl.setAttribute('title', 'Like');
+    button.parentNode.insertBefore(likeEl, button);
+  }
+});
+
+const likebtns = [...document.getElementsByClassName("like")];
+likebtns.forEach(likebtn => {
+  likebtn.addEventListener("click", function() {
+    likebtn.classList.toggle("liked");
+    likebtn.setAttribute('aria-pressed', likebtn.classList.contains('liked'));
+  })
+});
+
+// for demo only
+setTimeout(function() {
+  document.querySelector("button").focus();
+}, 500);
+
+// --- Cart implementation ---
+const cart = {};
+
+// load persisted cart if any
+function loadCart(){
+  try{ const raw = localStorage.getItem('sushidza_cart'); if(raw){ const obj=JSON.parse(raw); for(const k in obj) cart[k]=obj[k]; }}catch(e){console.error(e)}
+}
+
+function saveCart(){
+  try{ localStorage.setItem('sushidza_cart', JSON.stringify(cart)); }catch(e){console.error(e)}
+}
+function ensureProductIds(){
+  const containers = document.querySelectorAll('.rd, .sd, .std, .drd');
+  containers.forEach((el, index) => {
+    if (!el.dataset.productId) {
+      // create a predictable id using class and index
+      const base = el.className.split(' ')[0] || 'prod';
+      el.dataset.productId = `${base}-${index+1}`;
+    }
+  });
+}
+
+// augment existing product elements with price/weight dataset attributes when possible
+function ensureProductMetadata(){
+  const containers = document.querySelectorAll('.rd, .sd, .std, .drd');
+  containers.forEach((el)=>{
+    // price
+    if(!el.dataset.price){
+      const p = parsePriceFromElement(el);
+      if(p !== null) el.dataset.price = String(p);
+    }
+    // weight
+    if(!el.dataset.weight){
+      const w = parseWeightFromElement(el);
+      if(w) el.dataset.weight = w;
+    }
+  });
+}
+
+// read price text like <span class="price">190</span> -> 190 (number)
+function parsePriceFromElement(el){
+  const priceEl = el.querySelector('.price');
+  if(priceEl){
+    const txt = priceEl.textContent.replace(/[^0-9.,]/g,'').replace(',','.');
+    const n = parseFloat(txt);
+    if(!isNaN(n)) return n;
+  }
+  return null;
+}
+
+// read weight text like <span class="weight">Вага:320г</span> -> "320 г"
+function parseWeightFromElement(el){
+  const wEl = el.querySelector('.weight');
+  if(wEl){
+    const txt = wEl.textContent || '';
+    const m = txt.match(/(\d+)[^\d]?/);
+    if(m) return m[1] + ' г';
+    return txt.trim();
+  }
+  return null;
+}
+
+function createCartDOM(){
+  if (document.querySelector('.cart-overlay')) return;
+  const overlay = document.createElement('div'); overlay.className = 'cart-overlay';
+  const panel = document.createElement('aside'); panel.className = 'cart-panel';
+
+  panel.innerHTML = `
+    <header>
+      <h3>Кошик</h3>
+      <div>
+        <button class="close-btn" aria-label="Close cart">✕</button>
+      </div>
+    </header>
+    <div class="cart-items" aria-live="polite"></div>
+    <div class="cart-footer">
+      <div class="total"><span>Кількість:</span><span class="count">0</span></div>
+      <div class="sum"><span>Разом:</span><span class="sum-value">0 грн</span></div>
+      <div style="display:flex;gap:.5rem;"><button class="clear-cart">Очистити</button><button id="check" class="checkout">Оформити</button></div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+  document.body.appendChild(panel);
+
+  overlay.addEventListener('click', closeCart);
+  panel.querySelector('.close-btn').addEventListener('click', closeCart);
+  panel.querySelector('.clear-cart').addEventListener('click', function(){
+    for(const k in cart) delete cart[k];
+    renderCart();
+    syncButtonsWithCart();
+  });
+  panel.querySelector('.checkout').addEventListener('click', function(){
+  window.location.href = 'order.html';})
+  // ensure badge exists on the .bin button
+  const bin = document.querySelector('.bin');
+  if(bin && !bin.querySelector('.cart-badge')){
+    const badge = document.createElement('span'); badge.className = 'cart-badge';
+    bin.appendChild(badge);
+  }
+}
+
+function updateBinBadge(){
+  const bin = document.querySelector('.bin');
+  if(!bin) return;
+  const badge = bin.querySelector('.cart-badge');
+  let total = 0; for(const k in cart) total += cart[k].qty;
+  if(badge){ if(total>0) badge.classList.add('visible'); else badge.classList.remove('visible'); }
+}
+
+
+function syncButtonsWithCart(){
+  // iterate product containers and set/unset .following on their .button according to cart
+  document.querySelectorAll('.rd, .sd, .std, .drd').forEach(el=>{
+    const pid = el.dataset.productId;
+    const btn = el.querySelector('.button');
+    if(!btn) return;
+    if(pid && cart[pid]){
+      btn.classList.add('following');
+    } else {
+      btn.classList.remove('following');
+    }
+  });
+}
+
+function renderCart(){
+  const panel = document.querySelector('.cart-panel');
+  if(!panel) return;
+  const itemsEl = panel.querySelector('.cart-items');
+  itemsEl.innerHTML = '';
+  let totalCount = 0;
+  let totalSum = 0;
+  for(const id in cart){
+    const it = cart[id];
+    totalCount += it.qty;
+    const finalprice = it.finalprice?Number(it.finalprice):240;
+    const price = it.price?Number(it.price):240; // fallback price
+    const subtotal = finalprice * it.qty;
+    totalSum += subtotal;
+    const row = document.createElement('div'); row.className = 'cart-item';
+    row.innerHTML = `
+      <img src="${it.img}" alt="${escapeHtml(it.name)}">
+      <div class="meta"><h4>${escapeHtml(it.name)}</h4>
+        <p>Вага: ${it.weight || '—'}</p>
+        <div class="qty-controls">
+          <button class="qty-dec" data-id="${id}">−</button>
+          <input type="number" min="1" class="qty-input" data-id="${id}" value="${it.qty}" />
+          <button class="qty-inc" data-id="${id}">+</button>
+        </div>
+      </div>
+      <div style="margin-left:auto;text-align:right">
+        <div style="font-weight:700">${price} грн</div>
+        <div style="color:#666">${subtotal} грн</div>
+        <div><button class="remove" data-id="${id}">Видалити</button></div>
+      </div>
+    `;
+    itemsEl.appendChild(row);
+  }
+  
+  panel.querySelector('.count').textContent = totalCount;
+  const sumEl = panel.querySelector('.sum-value'); if(sumEl) sumEl.textContent = totalSum + ' грн';
+  // attach remove listeners
+  panel.querySelectorAll('.remove').forEach(btn=> btn.addEventListener('click', function(e){ const id = this.dataset.id; removeFromCart(id); }));
+  // attach qty controls
+  panel.querySelectorAll('.qty-inc').forEach(b=> b.addEventListener('click', function(){ const id=this.dataset.id; if(cart[id]){ cart[id].qty += 1; renderCart(); }}));
+  panel.querySelectorAll('.qty-dec').forEach(b=> b.addEventListener('click', function(){ const id=this.dataset.id; if(cart[id]){ cart[id].qty = Math.max(1, cart[id].qty - 1); renderCart(); }}));
+  panel.querySelectorAll('.qty-input').forEach(i=> i.addEventListener('change', function(){ const id=this.dataset.id; let v = parseInt(this.value,10)||1; v = Math.max(1,v); if(cart[id]){ cart[id].qty = v; renderCart(); }}));
+  updateBinBadge();
+  saveCart();
+}
+
+function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function addToCart(productId, salePrice){
+  if(!productId) return;
+  const container = document.querySelector(`[data-product-id="${productId}"]`);
+  if(!container) return;
+  const name = container.querySelector('h2') ? container.querySelector('h2').textContent.trim() : 'Товар';
+  const img = container.querySelector('img') ? container.querySelector('img').src : '';
+  // Toggle behavior: if exists remove completely, otherwise add with qty=1
+  if(cart[productId]){
+    delete cart[productId];
+  } else {
+    // ensure metadata on container
+    if(!container.dataset.price || !container.dataset.weight) ensureProductMetadata();
+    const price = container.dataset.price ? Number(container.dataset.price) : (parsePriceFromElement(container) || 240);
+    let finalprice = price-(salePrice*price);
+    const weight = container.dataset.weight || parseWeightFromElement(container) || '40 г';
+    cart[productId] = { id: productId, name, img, qty: 1, finalprice, price, weight };
+  }
+  renderCart();
+  syncButtonsWithCart();
+}
+
+function removeFromCart(productId){ 
+  delete cart[productId]; 
+  renderCart(); 
+  syncButtonsWithCart();
+}
+
+function openCart(){ createCartDOM(); document.querySelector('.cart-overlay').classList.add('visible'); document.querySelector('.cart-panel').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeCart(){ const ov = document.querySelector('.cart-overlay'); const p = document.querySelector('.cart-panel'); if(ov) ov.classList.remove('visible'); if(p) p.classList.remove('open'); document.body.style.overflow = ''; }
+
+// wire .bin to open cart
+document.addEventListener('DOMContentLoaded', function(){
+  ensureProductIds();
+  ensureProductMetadata();
+  loadCart();
+  createCartDOM();
+  // reconcile existing persisted cart items with metadata (price/weight)
+  (function reconcileCart(){
+    let changed = false;
+    for(const id in cart){
+      const it = cart[id];
+      if((!it.price || !it.weight) && document.querySelector(`[data-product-id="${id}"]`)){
+        const c = document.querySelector(`[data-product-id="${id}"]`);
+        const p = c.dataset.price ? Number(c.dataset.price) : parsePriceFromElement(c);
+        const w = c.dataset.weight || parseWeightFromElement(c);
+        if(p) { it.price = p; changed = true; }
+        if(w) { it.weight = w; changed = true; }
+      }
+    }
+    if(changed) saveCart();
+  })();
+  // open side cart on bin click (restore previous behavior)
+  const bin = document.querySelector('.bin');
+  if(bin){ 
+    bin.addEventListener('click', function(e){
+      e && e.preventDefault();
+      createCartDOM();
+      openCart();
+    });
+  }
+  // make the navigation "Доставка" go to the order page
+  document.querySelectorAll('.nav_txt').forEach(a => {
+    try{
+      if(a.textContent && a.textContent.trim().toLowerCase().includes('доставка')){
+        a.addEventListener('click', function(e){ e && e.preventDefault(); window.location.href = 'order.html'; });
+      }
+      
+    }catch(e){/* ignore */}
+  });
+  // wire .button clicks to add item and open cart
+  const productButtons = document.querySelectorAll('.button');
+  productButtons.forEach(btn => {
+    btn.addEventListener('click', function(e){
+      // find product container
+      const product = btn.closest('.rd, .sd, .std, .drd');
+      if(product){
+        if(!product.dataset.productId) ensureProductIds();
+        addToCart(product.dataset.productId,0);
+      }
+    });
+  });
+  // apply saved cart state to buttons
+  syncButtonsWithCart();
+  renderCart();
+  // wire banner order button to add current banner image
+});
+
+</script>
+
+</body>
+</html>
