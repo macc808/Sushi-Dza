@@ -3,6 +3,7 @@ const moreBtn = document.querySelector('.more');
 const sushiDiv = document.querySelector('.sushi_div');
 const drinkDiv = document.querySelector('.drinks_div');
 const setsDiv = document.querySelector('.sets_div');
+const rollsDiv = document.querySelector('.rolls_div');
 moreBtn.addEventListener('click', () => {
     sushiDiv.style.display = 'flex';
     drinkDiv.style.display = 'flex';
@@ -13,7 +14,7 @@ moreBtn.addEventListener('click', () => {
 
 const categoryButtons = document.querySelectorAll("#categoryFilters button");
     const ingredientButtons = document.querySelectorAll("#ingredientFilters button");
-    const products = document.querySelectorAll(".product");
+    const products = document.querySelectorAll(".products");
 
     let activeCategory = "all";
     let activeIngredient = null;
@@ -50,10 +51,10 @@ const categoryButtons = document.querySelectorAll("#categoryFilters button");
     });
 
     function filterProducts() {
-        products.forEach(p => {
+        document.getElementsByClassName(".rd,.sd,.std,.drd").forEach(p => {
             let category = p.dataset.category;
             let ing = p.dataset.ing.split(" ");
-
+          
             let okCategory = (activeCategory === "all" || activeCategory === category);
             let okIngredient = (!activeIngredient || ing.includes(activeIngredient));
 
