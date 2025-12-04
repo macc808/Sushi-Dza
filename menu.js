@@ -1,4 +1,16 @@
 
+const moreBtn = document.querySelector('.more');
+const sushiDiv = document.querySelector('.sushi_div');
+const drinkDiv = document.querySelector('.drinks_div');
+const setsDiv = document.querySelector('.sets_div');
+moreBtn.addEventListener('click', () => {
+    sushiDiv.style.display = 'flex';
+    drinkDiv.style.display = 'flex';
+    setsDiv.style.display = 'flex';
+    moreBtn.style.display = 'none';
+});
+
+
 const categoryButtons = document.querySelectorAll("#categoryFilters button");
     const ingredientButtons = document.querySelectorAll("#ingredientFilters button");
     const products = document.querySelectorAll(".product");
@@ -7,6 +19,10 @@ const categoryButtons = document.querySelectorAll("#categoryFilters button");
     let activeIngredient = null;
 
     // ФІЛЬТР ДЛЯ КАТЕГОРІЙ
+
+    
+
+
     categoryButtons.forEach(btn => {
         btn.addEventListener("click", () => {
             categoryButtons.forEach(b => b.classList.remove("active"));
