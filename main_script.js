@@ -7,17 +7,17 @@ function random_banner2_img(min, max) {
 
     salePrice = 0;
 
-    if (random == 1) { b2_txt = "https://i.postimg.cc/cC6T9bZz/rolls3.png"; salePrice = 0.1; b2price = 420; }
-    if (random == 2) { b2_txt = "https://i.postimg.cc/MHXtPFxs/rolls1.png"; salePrice = 0.1; b2price = 450; }
-    if (random == 3) { b2_txt = "https://i.postimg.cc/D0m5jMn2/rolls7.png"; salePrice = 0.1; b2price = 390; }
+    if (random == 1) { b2_txt = "https://i.postimg.cc/FzF2HWj7/rolls3.webp"; salePrice = 0.1; b2price = 420; }
+    if (random == 2) { b2_txt = "https://i.postimg.cc/nrV6hRvr/rolls1.webp"; salePrice = 0.1; b2price = 450; }
+    if (random == 3) { b2_txt = "https://i.postimg.cc/prVgLGDn/rolls7.webp"; salePrice = 0.1; b2price = 390; }
 
-    if (random == 4) { b2_txt = "https://i.postimg.cc/QC4NsV2g/Sushi2.png"; salePrice = 0.08; b2price = 80; }
-    if (random == 5) { b2_txt = "https://i.postimg.cc/J067mtfp/Sushi6.png"; salePrice = 0.08; b2price = 85; }
-    if (random == 6) { b2_txt = "https://i.postimg.cc/0jW5xrTY/Sushi4.png"; salePrice = 0.08; b2price = 90; }
+    if (random == 4) { b2_txt = "https://i.postimg.cc/L5yGYtTB/Sushi2.webp"; salePrice = 0.08; b2price = 80; }
+    if (random == 5) { b2_txt = "https://i.postimg.cc/Xq2tGf8x/Sushi6.webp"; salePrice = 0.08; b2price = 85; }
+    if (random == 6) { b2_txt = "https://i.postimg.cc/PJ60pW4M/Sushi4.webp"; salePrice = 0.08; b2price = 90; }
 
-    if (random == 7) { b2_txt = "https://i.postimg.cc/wxGdqKtN/sets8.png"; salePrice = 0.2; b2price = 1200; }
-    if (random == 8) { b2_txt = "https://i.postimg.cc/MZF86kcT/sets2.png"; salePrice = 0.2; b2price = 1100; }
-    if (random == 9) { b2_txt = "https://i.postimg.cc/9Xnjm340/sets5.png"; salePrice = 0.2; b2price = 1850; }
+    if (random == 7) { b2_txt = "https://i.postimg.cc/FzPwdyZ0/sets8.webp"; salePrice = 0.2; b2price = 1200; }
+    if (random == 8) { b2_txt = "https://i.postimg.cc/sxnbQYcB/sets2.webp"; salePrice = 0.2; b2price = 1100; }
+    if (random == 9) { b2_txt = "https://i.postimg.cc/ZnfXB8cN/sets5.webp"; salePrice = 0.2; b2price = 1850; }
 
     // ОНОВЛЮЄМО ВЖЕ ІСНУЮЧІ ЕЛЕМЕНТИ
     const old_price = document.querySelector('.banner2_old');
