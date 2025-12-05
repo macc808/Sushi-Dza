@@ -406,6 +406,13 @@ document.addEventListener('DOMContentLoaded', function(){
       }
     }catch(e){/* ignore */}
   });
+    document.querySelectorAll('.nav_txt, .fnav_txt').forEach(a => {
+    try{
+      if(a.textContent && a.textContent.trim().toLowerCase().includes('головна')){
+        a.addEventListener('click', function(e){ e && e.preventDefault(); window.location.href = 'index.html'; });
+      }
+    }catch(e){/* ignore */}
+  });
   // wire .button clicks to add item and open cart
   const productButtons = document.querySelectorAll('.button');
   productButtons.forEach(btn => {
