@@ -365,7 +365,7 @@ article{
     .card{background:var(--card);padding:1.25rem;border-radius:12px;box-shadow:0 8px 30px rgba(16,24,40,0.06)}
     .ord{margin:0 0 1rem 0;font-size:1.6rem}
     label{display:block;font-size:0.95rem;margin-bottom:.25rem}
-    input[type=text], input[type=tel], select, textarea{width:100%;padding:.6rem;border:1px solid #eef0f2;border-radius:10px;margin-bottom:.8rem;background:#fbfbfb}
+    input[type=text], input[type=tel],input[type=date],input[type=time], select, textarea{width:100%;padding:.6rem;border:1px solid #eef0f2;border-radius:10px;margin-bottom:.8rem;background:#fbfbfb}
     .row{display:flex;gap:.6rem}
     .small{width:48%}
     #date{
@@ -489,11 +489,11 @@ article{
           <div class="row">
             <div class="small">
               <label>Дата</label>
-              <input type="text" id="date" placeholder="Сьогодні">
+              <input type="date" id="date" placeholder="Сьогодні">
             </div>
             <div class="small">
               <label>Час</label>
-              <input type="text" id="time" placeholder="Найближчий">
+              <input type="time" id="time" placeholder="Найближчий">
             </div>
           </div>
 
