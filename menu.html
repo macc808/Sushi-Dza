@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
+    <link rel="shortcut icon" href="https://i.postimg.cc/TP3rhQfF/Su-Shi-Dza-logo-removebg-preview.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Permanent+Marker&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Меню</title>
@@ -205,7 +212,6 @@
               display: flex;
               align-items: start;
               justify-content: start;
-              gap: 2rem;
               flex-wrap: wrap;
         }
 
@@ -216,14 +222,16 @@
             padding: 20px;
             flex-wrap: wrap;
             justify-content: center;
+            font-family:"Didact Gothic", sans-serif;
         }
         .filters button {
             padding: 10px 20px;
-            background: #333;
+            background: #fff;
             border: none;
             border-radius: 6px;
-            color: #fff;
+            color: #000;
             cursor: pointer;
+            font-family:"Didact Gothic", sans-serif;
         }
         .filters button.active {
             background: #ff9800;
@@ -241,6 +249,9 @@
             background: #222;
             padding: 15px;
             border-radius: 10px;
+            font-family:"Didact Gothic", sans-serif;
+            padding-top: 0;
+            margin-top: 0;
         }
         .product img {
             width: 100%;
@@ -439,17 +450,7 @@
     }
   }
 }
-  
-.rolls_div, .sushi_div{
-    display: none;
-    flex-wrap: wrap;
-    gap: 2rem;
-    max-width: 80%;
-    margin: auto;
-    justify-content: center;
-    margin-top: 100px;
-
-    
+   
     h1{
       width: 100%;
       text-align: left;
@@ -460,35 +461,6 @@
       color: #000;
       margin-left: 3rem;
     }
-}
-
-.more{
-    display: block;
-    margin: auto;
-    padding: 1rem 2rem;
-    background-color: #03b62af5;
-    color: #fff;
-    border: none;
-    border-radius: 1.25rem 1.25rem 1.5rem 1.25rem;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background 0.33s;
-
-    &:hover {
-        background-color: #04a026f5;
-    }
-}
-
-.rolls_div{display: flex;}
-.sets_div, .drinks_div{
-    display: none;
-    flex-wrap: wrap;
-    gap: 2rem;
-    max-width: 100%;
-    margin: auto;
-    justify-content: center;
-    margin-top: 100px;
-}
 
 
 .rd, .sd, .std, .drd {
@@ -508,7 +480,7 @@
   max-height: fit-content;
   overflow: clip;
   position: relative;
-  font-family: Lato, Montserrat, Helvetica, Arial, sans-serif;
+  font-family: "Didact Gothic", sans-serif;
   transition: padding-bottom 0.5s linear;  
   box-shadow: 0.3rem 1rem 1rem rgba(0, 0, 0, 0.1);
 
@@ -855,7 +827,19 @@
   }
 }
 
-.rd { display: flex; }
+.logo_txt{
+  font-family: "Permanent Marker", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+  color: #000;
+  margin: auto;
+}
+
+.rd { display: flex;  margin-top: 0;}
+
+*{font-family:"Didact Gothic", sans-serif;}
+
 
     </style>
 </head>
@@ -906,8 +890,8 @@
   </header>
 <main>
 <!-- КАТЕГОРІЇ -->
-<div>
-<div class="filters" id="categoryFilters">
+<div style="display: flex; flex-wrap: wrap; margin: auto; gap: 1rem; margin-bottom: 0;">
+<div class="filters" id="categoryFilters" style="margin: auto;">
     <button data-category="all" class="active">Усе</button>
     <button data-category="rolls">Роли</button>
     <button data-category="sushi">Суші</button>
@@ -916,7 +900,7 @@
 </div>
 
 <!-- ІНГРЕДІЄНТИ -->
-<div class="filters" id="ingredientFilters">
+<div style="margin: auto; margin-bottom: 0;" class="filters" id="ingredientFilters">
     <button data-ing="salmon">Лосось</button>
     <button data-ing="tuna">Тунець</button>
     <button data-ing="shrimp">Креветка</button>
@@ -1077,6 +1061,132 @@
                             <button class="like"></button>
                             <button class="button"></button>
                         </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="rd" data-category="rolls" data-ing="tuna"> 
+                    <img src="https://i.postimg.cc/RhqGsD9y/rolls4.png" alt="" />
+                    <section>
+                        <h2>Хімаварі</h2>
+                        <p><span class="weight">Вага: 432 г</span><br/>
+                            Нори, рис, японский майонез, тунець, бальзамик, трюфельная сальса, кунжутное масло
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">380</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="rd" data-category="rolls" data-ing="avocado">
+                    <img src="https://i.postimg.cc/RhqGsD9y/rolls4.png" alt="" />
+                    <section>
+                        <h2>Oreo</h2>
+                        <p><span class="weight">Вага: 180 г</span><br/>
+                            Нори, рис, японский майонез, авокадо, бальзамик, трюфельная сальса, кунжутное масло
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">260</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="rd" data-category="rolls" data-ing="shrimp">
+                    <img src="https://i.postimg.cc/RhqGsD9y/rolls4.png" alt="" />
+                    <section>
+                        <h2>Макі вугор</h2>
+                        <p><span class="weight">Вага: 180 г</span><br/>
+                            Нори, рис, японский майонез, креветки, бальзамик, трюфельная сальса, соус унагі
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">320</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="rd" data-category="rolls" data-ing="salmon avocado">
+                    <img src="https://i.postimg.cc/RhqGsD9y/rolls4.png" alt="" />
+                    <section>
+                        <h2>Філадельфія гриль</h2>
+                        <p><span class="weight">Вага: 185 г</span><br/>
+                            Нори, рис, японский майонез, лосось, авокадо, бальзамик, трюфельная сальса, соус спайсі
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">270</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="rd" data-category="rolls" data-ing="salmon avocado shrimp">
+                    <img src="https://i.postimg.cc/RhqGsD9y/rolls4.png" alt="" />
+                    <section>
+                        <h2>Комбо Філадельфия креветкою</h2>
+                        <p><span class="weight">Вага: 252 г</span><br/>
+                            Нори, рис, японский майонез, авокадо, лосось бальзамик, трюфельная сальса, кунжутное масло, креветка
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">420</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="rd" data-category="rolls" data-ing="tuna avocado shrimp">
+                    <img src="https://i.postimg.cc/RhqGsD9y/rolls4.png" alt="" />
+                    <section>
+                        <h2>Сенсей</h2>
+                        <p><span class="weight">Вага: 185 г</span><br/>
+                            Нори, рис, японский майонез, тунець, кунжутное масло, соус спайсі, креветка
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">330</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
+                        </div>
+                    </section>
+                </div>
+                <div class="rd" data-category="rolls" data-ing="salmon avocado tuna cheese">
+                    <img src="https://i.postimg.cc/RhqGsD9y/rolls4.png" alt="" />
+                    <section>
+                        <h2>Канада</h2>
+                        <p><span class="weight">Вага: 185 г</span><br/>
+                            Нори, рис, японский майонез, бальзамик, лосось, тунець, сир, авокадо 
+                        </p>
+                        <div>
+                            <div class="card_down">
+                                <span class="price">460</span><span class="grn"> грн</span>
+                            </div>
+                            <aside style="display: flex; gap: 0.1rem; ">
+                                <button class="like"></button>
+                                <button class="button"></button>
+                            </aside>
                         </div>
                     </section>
                 </div>

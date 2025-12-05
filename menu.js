@@ -45,6 +45,7 @@ const categoryButtons = document.querySelectorAll("#categoryFilters button");
 
             p.style.display = (okCategory && okIngredient) ? "flex" : "none";
             p.style.flexWrap = "wrap";
+            p.style.justifyContent = "center";
         });
     }
 
@@ -396,6 +397,13 @@ document.addEventListener('DOMContentLoaded', function(){
         a.addEventListener('click', function(e){ e && e.preventDefault(); window.location.href = 'order.html'; });
       }
       
+    }catch(e){/* ignore */}
+  });
+    document.querySelectorAll('.nav_txt, .fnav_txt').forEach(a => {
+    try{
+      if(a.textContent && a.textContent.trim().toLowerCase().includes('меню')){
+        a.addEventListener('click', function(e){ e && e.preventDefault(); window.location.href = 'menu.html'; });
+      }
     }catch(e){/* ignore */}
   });
   // wire .button clicks to add item and open cart

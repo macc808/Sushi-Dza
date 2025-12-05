@@ -338,7 +338,7 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
   // make the navigation "Доставка" go to the order page
-  document.querySelectorAll('.nav_txt').forEach(a => {
+  document.querySelectorAll('.nav_txt, .fnav_txt').forEach(a => {
     try{
       if(a.textContent && a.textContent.trim().toLowerCase().includes('доставка')){
         a.addEventListener('click', function(e){ e && e.preventDefault(); window.location.href = 'order.html'; });
@@ -346,7 +346,14 @@ document.addEventListener('DOMContentLoaded', function(){
       
     }catch(e){/* ignore */}
   });
-  // wire .button clicks to add item and open cart
+  document.querySelectorAll('.nav_txt, .fnav_txt').forEach(a => {
+    try{
+      if(a.textContent && a.textContent.trim().toLowerCase().includes('меню')){
+        a.addEventListener('click', function(e){ e && e.preventDefault(); window.location.href = 'menu.html'; });
+      }
+    }catch(e){/* ignore */}
+  });
+  // wire .button clicks to  add item and open cart
   const productButtons = document.querySelectorAll('.button');
   productButtons.forEach(btn => {
     btn.addEventListener('click', function(e){
