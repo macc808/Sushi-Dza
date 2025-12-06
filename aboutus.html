@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header{
+  justify-content: center;
+  display: block;
+  width: 100%;
+  justify-items: center;
+
+}
+
+nav {
+  --nav-bg: #fff;
+  --text-color: #000;
+  border: none;
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+  max-width: 85%;
+  z-index: 3; 
+  padding: 0rem 2rem 0 2rem;
+  width: fit-content;
+  
+  /* Додаємо стилі для стрілки */
+  .toggle-arrow {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+    margin: 0.5rem auto;
+    display: block;
+    transition: transform 0.3s;
+  }
+  
+  .toggle-arrow:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Приховуємо article за замовчуванням */
+  .categories {
+    display: none; /* Прихований за замовчуванням */
+    flex-direction: row; /* Змінюємо на колонку для мобільності, якщо потрібно */
+    gap: 1rem;
+    max-width: fit-content;
+    margin: auto;
+    margin-top: 1rem;
+    padding: 1rem 1rem 1rem 1rem;
+    background: var(--nav-bg);
+    border-radius: 30px;
+    box-shadow: 0.5rem 1rem 1rem rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Клас для відкритого стану */
+  .categories.open {
+    display: flex; /* Показуємо при відкритті */
+  }
+  
+  /* Решта стилів залишаються */
+  div {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    background: var(--nav-bg);
+    border-radius: 30px;
+    box-shadow: 0.5rem 1rem 1rem rgba(0, 0, 0, 0.1);
+    
+    p {
+      font-family: "Didact Gothic", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      display: flex;
+      justify-content: center;
+      margin: auto;
+    }
+    
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    
+    span {
+      display: flex;
+      gap: 0;
+      justify-content: center;
+      text-align: center;
+      margin: auto;
+    }
+    
+    .phone_img {
+      width: 2rem;
+      height: 2rem;
+    }
+    
+    h1 {
+      font-family: "Permanent Marker", cursive;
+      font-weight: 400;
+      font-style: normal;
+      color: var(--text-color);
+    }
+    
+    a {
+      color: var(--a-text-color);
+      text-decoration: none;
+      font-size: 1.7rem;
+      gap: 2rem;
+      margin: auto;
+      font-family: "Didact Gothic", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      padding: 0.5rem 1rem 0.5rem 1rem;
+      transition: all 0.3s;
+
+
+      &:hover {
+        background-color: #eeecec;
+        border-radius: 20px;
+      }
+    }
+  }
+  
+  .logo_img {
+    width: 4rem;
+    height: 6rem;
+    gap: 0;
+    margin-left: 0;
+  }
+  
+  .bin {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: 0.5rem;
+    gap: 0.5rem;
+    border-radius: 30px;
+    background-color: #eaeaeaf2;
+    outline: 1px #fff;
+    border: 1px solid #0000;
+    border-radius: 1.25rem 1.25rem 1.5rem 1.25rem;
+    font-size: 1rem;
+    padding: 1rem 2rem 1rem 1.5rem;
+    translate: 1rem;
+    transition: background 0.33s;
+    outline-offset: 1px;
+    position: relative;
+    
+    &:hover {
+      background-color: #d3d3d3f2;
+      transition: all 0.5s;
+    }
+  }
+}
+footer{
+  display: flex;
+  width: 110%;
+  background-color: #f5f5f5;
+  padding: 3rem 2rem;
+  margin-top: 5rem;
+  font-family: "Didact Gothic", sans-serif;
+  gap: 2rem;
+
+  img{
+    width: 4rem;
+    height: 6rem;
+  }
+
+  > div {
+    display: flex;
+    width: 100%;
+    gap: 3rem;
+    justify-content: space-between;
+    margin: auto;
+    max-width: fit-content;
+    
+
+    > div:first-child {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      min-width: 15rem;
+
+      img {
+        width: 3rem;
+        height: 3rem;
+      }
+
+      h3 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: #000;
+      }
+
+      p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #666;
+      }
+    }
+
+    > section {
+      display: flex;
+      gap: 4rem;
+      flex: 1;
+      flex-wrap: wrap;
+
+      
+
+      > div {
+        display: flex;
+        flex-direction: row;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+
+
+        
+        p {
+          margin: 0;
+
+          span {
+            display: block;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 0.5rem;
+
+            &:not(:first-child) {
+              font-weight: 400;
+              font-size: 0.95rem;
+              color: #666;
+            }
+          }
+
+          a {
+            display: block;
+            color: #000;
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+            transition: color 0.3s;
+
+            &:hover {
+              color: #00CC2D;
+            }
+          }
+        }
+      }
+
+      > div:nth-child(4) {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        min-width: 12rem;
+
+        > div {
+          display: flex;
+          gap: 0.5rem;
+          align-items: center;
+
+          img {
+            width: 1.5rem;
+            height: 1.5rem;
+          }
+        }
+
+        > div:last-child {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+
+          h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #000;
+          }
+
+          p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+          }
+
+          a {
+            color: #00CC2D;
+            text-decoration: none;
+            font-size: 0.9rem;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+
+      > div:nth-child(5) {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-end;
+
+        h2 {
+          margin: 0;
+          font-size: 1.5rem;
+          color: #000;
+        }
+
+        p {
+          margin: 0;
+          font-size: 0.9rem;
+          color: #666;
+          text-align: right;
+        }
+
+        a {
+          color: #00CC2D;
+          text-decoration: none;
+          font-size: 0.9rem;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        > div {
+          display: flex;
+          gap: 1rem;
+        }
+
+        img {
+          width: 1.5rem;
+          height: 1.5rem;
+          cursor: pointer;
+          transition: transform 0.2s ease-out;
+          backface-visibility: hidden;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+}
+  :root{
+    --bg:#0f1720;
+    --card:#0b1220;
+    --accent:#1f2937;
+    --text:#e6eef6;
+    --muted:#9aa6b2;
+    --glass: rgba(255,255,255,0.02);
+  }
+  html,body{height:100%;margin:0;font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif;background:linear-gradient(180deg,#07101a 0%, #071218 100%);color:var(--text)}
+  .wrap{max-width:980px;margin:36px auto;padding:24px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;box-shadow:0 8px 30px rgba(3,7,18,0.7)}
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  h1{font-size:20px;margin:0}
+  p.lead{margin:6px 0 0;color:var(--muted);font-size:13px}
+  .controls{display:flex;gap:12px;align-items:center}
+  button.primary{background:#0ea5a6;border:0;color:#052022;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text);padding:8px 12px;border-radius:8px;cursor:pointer}
+  main{margin-top:20px;display:grid;grid-template-columns:1fr;gap:18px}
+  .preview{
+    background:var(--card);padding:16px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);
+    display:flex;align-items:center;gap:14px;
+  }
+  .img-thumb{width:100px;height:140px;background:#08121a;border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px}
+  .meta{flex:1}
+  .meta small{display:block;color:var(--muted);margin-top:4px}
+  /* Modal */
+  .modal-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:24px;z-index:80;background:linear-gradient(0deg, rgba(2,6,23,0.6), rgba(2,6,23,0.6))}
+  .modal{max-width:900px;width:100%;max-height:85vh;overflow:auto;background:linear-gradient(180deg,#071422,#071018);border-radius:12px;padding:22px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 18px 60px rgba(2,6,12,0.8)}
+  .modal header{display:flex;align-items:center;justify-content:space-between}
+  .modal .content{margin-top:12px;color:var(--text);line-height:1.6;font-size:14px}
+  h2.section{font-size:16px;margin:18px 0 8px}
+  .muted{color:var(--muted);font-size:13px}
+  pre.contract{white-space:pre-wrap;font-family:inherit;background:transparent;border-left:3px solid rgba(255,255,255,0.02);padding-left:12px}
+  .close{background:transparent;border:0;color:var(--muted);cursor:pointer;font-size:14px}
+  footer{margin-top:18px;display:flex;gap:8px;justify-content:flex-end}
+  @media (max-width:600px){
+    .img-thumb{display:none}
+    .wrap{margin:12px}
+  }
+    </style>
+</head>
+<body>
+    <header>
+        <nav style="position: fixed;">
+    <div>
+        <span>
+            <img class="logo_img" src="https://i.postimg.cc/GtM68FQg/Su-Shi-Dza-logo-removebg-preview.webp" alt="">
+            <h1 class="logo_txt">SushiDza</h1>
+        </span>
+        <a class="nav_txt" href="">Головна</a>
+        <a class="nav_txt" href="">Доставка</a>
+        <a class="nav_txt" style="background-color: #eeecec; border-radius:20px;" href="">Про нас</a>
+        <a class="nav_txt" href="">Новини</a>
+        <a class="nav_txt" href="">Меню</a>
+        <p>
+            <img class="phone_img" src="https://i.postimg.cc/tJRL4Shg/phone-ico.webp" alt="">
+            <span>+38 (098) 566 8482</span>
+        </p>
+        <button class="bin">
+            <span>Кошик</span>
+            <img src="https://i.postimg.cc/FzPwdyZW/Ikonka.webp" alt="">
+        </button>
+        <br/>
+    </div>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div>
+                <h2>Про нас</h2>
+                <p>Ласкаво просимо до SushiDza – вашого улюбленого місця для насолоди справжніми японськими стравами! Ми прагнемо принести вам найсвіжіші та найсмачніші суші, ролли та інші делікатеси, приготовані з любов'ю та майстерністю наших досвідчених кухарів.</p>
+                <p>У SushiDza ми віримо в якість інгредієнтів. Ми співпрацюємо з найкращими постачальниками, щоб забезпечити свіжість кожного шматочка риби, кожного листка норі та кожного зернятка рису. Наша команда кухарів ретельно готує кожну страву, дотримуючись традиційних японських рецептів та технік.</p>
+                <p>Наше меню пропонує широкий вибір суші та роллів, включаючи класичні варіанти, такі як Каліфорнія, Філадельфія та Спайсі Туна, а також унікальні авторські страви, створені нашими кухарями. Крім того, ми пропонуємо різноманітні супи, салати та гарячі страви, щоб задовольнити будь-який смак.</p>
+                <p>У SushiDza ми цінуємо наших клієнтів і прагнемо забезпечити найкращий сервіс. Наш дружній персонал завжди готовий допомогти вам з вибором страв або відповісти на будь-які питання. Ми також пропонуємо швидку доставку, щоб ви могли насолоджуватися улюбленими суші прямо у себе вдома.</p>
+                <p>Дякуємо, що обрали SushiDza. Ми сподіваємося, що кожен ваш візит буде наповнений смаками Японії та приємними враженнями!</p>
+            </div>
+        </section>
+        <div class="wrap" role="main">
+    <header>
+      <div>
+        <h1>Договір — переклад (рос. → укр.)</h1>
+        <p class="lead">Перекладено на основі завантаженого зображення. Кнопка «Читати договір» відкриває повний текст.</p>
+      </div>
+      <div class="controls">
+        <button class="ghost" id="downloadTxt">Завантажити .txt</button>
+        <button class="primary" id="openContract">Читати договір</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="preview" aria-hidden="false">
+        <div class="img-thumb">Зображення</div>
+        <div class="meta">
+          <strong>Назва документа:</strong> Загальні умови/Договір купівлі-продажу (приклад)<br/>
+          <small class="muted">Перекладено автоматично вручну; перегляньте на відповідність для офіційного використання.</small>
+        </div>
+      </div>
+
+      <section class="muted">
+        <strong>Примітка:</strong> Якщо потрібно відредагувати текст або отримати юридично вивірений переклад, надішли текстовий файл договору або дозволь зробити OCR.
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document">
+      <header>
+        <div>
+          <h2>Договір — повний переклад українською</h2>
+          <div class="muted">Нижче — повний текст (переклад). Прокрути, щоб прочитати.</div>
+        </div>
+        <button class="close" id="closeBtn" title="Закрити">✕</button>
+      </header>
+
+      <div class="content">
+        <pre class="contract" id="contractText">
+1. Загальні положення
+
+1.1. Прийняття умов Договору відбувається шляхом погодження між Продавцем та Покупцем. При замовленні Товару Покупець приймає правила та умови, наведенi на Сайті, зазначені в Договорі. Якщо Покупець не згоден з правилами та умовами, він повинен відмовитися від використання Сайту.
+
+1.2. У відносинах між Покупцем і Продавцем застосовуються положення чинного законодавства України. Розміщення на Сайті Товарів і Договорів є публічною офертою в порядку ст. 633 і 634 Цивільного кодексу України.
+
+1.3. Продавець має право вносити зміни до Договору в односторонньому порядку шляхом розміщення нової редакції Договору на Сайті без додаткового повідомлення Покупця. Нова редакція набирає чинності з дати публікації на Сайті, якщо інше не вказано в Договорі.
+
+1.4. Продавець має право не перепродати (або іншим способом не передати) свої права й обов'язки третім особам.
+
+1.5. Сайт може бути тимчасово, частково або повністю недоступним у зв'язку з проведенням робіт чи з інших причин технічного характеру без причини Продавця.
+
+1.6. Якщо окремі положення або пункти Договору будуть визнані недійсними або такими, що не підлягають виконанню, інші положення Договору залишаються в силі. У випадку якщо зміна положень може істотно вплинути на права й обов'язки сторін, Продавець може ініціювати внесення змін до Договору.
+
+2. Товар
+
+2.1. На Сайті пропонуються товари для продажу, у тому числі, але не виключно, споживчі товари, готові блюда та напої. У разі відсутності Товару Продавець має право скасувати замовлення Товару та повідомити про це Покупця на електронну пошту або телефоном, вказаним Покупцем.
+
+2.2. На Сайті вказана основна інформація про Товар і його фотографії. Фотографії є ілюстрацією і можуть відрізнятися від реального вигляду Товару. Інформація (опис) стосовно Товару може бути неповною; Продавець може надавати додаткову інформацію про Товар за запитом Покупця.
+
+2.3. Продавець має право в односторонньому порядку змінювати ціну Товару, вказану на Сайті. Це не поширюється на замовлення, які вже підтверджено відповідно до умов Договору.
+
+3. Замовлення Товару
+
+3.1. Покупець може оформити заявку на придбання і доставку Товару, який є в наявності і представлений на Сайті. Оформлення здійснюється за допомогою кнопки на сайті або іншим способом, передбаченим Продавцем. Продавець залишає за собою право відмовити в обробці замовлення в разі технічних або інших обставин.
+
+3.2. Оформлення замовлення в електронному вигляді здійснюється через форму на Сайті. Покупець, надаючи інформацію про себе на Сайті (ім'я, контактні дані, адресу доставки), підтверджує свої дані та згоду на обробку персональних даних.
+
+3.3. Покупець самостійно несе повну відповідальність за достовірність наданих даних. Якщо вказані дані є некоректними, Продавець має право відмовити у виконанні замовлення.
+
+3.4. У разі зміни характеристик чи наявності Товару Продавець може зв'язатися з Покупцем через надані контакти та узгодити подальші дії.
+
+3.5. Замовлення може бути анульовано Покупцем до моменту оплати або у випадку відсутності Товару.
+
+4. Оплата Товару
+
+4.1. Ціна товару вказується в гривнях згідно з вимогами Incoterms (якщо зазначено).
+
+4.2. Ціна товару не включає комісій та додаткові збори банків і платіжних систем. Покупець самостійно несе витрати за оплату банківської комісії, якщо така передбачена.
+
+4.3. Ціна товару може бути змінена Продавцем в односторонньому порядку на підставі положень Договору.
+
+4.4. Покупець може оплатити Товар онлайн або при отриманні Товару кур'єром. Вибір оплати здійснюється при оформленні Замовлення.
+
+4.5. Якщо в Замовленні вказані кілька Товарів, Покупець може оплатити Замовлення частково або повністю залежно від умов, встановлених Продавцем.
+
+4.6. При оплаті через платіжні сервіси Продавець не несе відповідальності за затримки або помилки платіжних систем.
+
+5. Доставка Товару
+
+5.1. Доставка товару здійснюється групою доставки (кур'єрською службою) по території, зазначеній на Сайті. Зони доставки можуть визначатися на Сайті.
+
+5.2. При прийомі Товару Покупець перевіряє комплектність і якість товару. У разі виявлення дефектів або невідповідності, Покупець має право відмовитися від Товару та повідомити Продавця.
+
+5.3. Момент переходу права власності на Товар вважається моментом передачі Товару Покупцеві або іншій уповноваженій особі у встановленому порядку.
+
+5.4. Доставка Товару є окремою послугою і не є частиною самого Товару.
+
+6. Повернення і обмін Товару
+
+6.1. Продукція, доступна на Сайті для замовлення, може підпадати під повернення та обмін згідно з чинним законодавством України і вимогами щодо захисту прав споживачів. Повернення харчових продуктів можливе лише у випадках, передбачених законодавством.
+
+7. Конфіденційність та персональні дані
+
+7.1. Продавець збирає та обробляє персональні дані, які Покупець надає під час реєстрації або оформлення Замовлення, відповідно до Закону України "Про захист персональних даних" та інших нормативних актів.
+
+7.2. Персональні дані збираються та обробляються з метою надання послуг, обробки замовлень, інформування (зокрема про акції), а також для інших цілей, пов'язаних зі здійсненням діяльності Продавця.
+
+7.3. Політика конфіденційності та обробки персональних даних застосовується до всіх розділів Сайту та стосунків між Продавцем і Покупцем.
+
+7.4. Покупець підтверджує свою згоду на обробку персональних даних шляхом прийняття умов Договору при оформленні Замовлення.
+
+(Примітка: це — скорочений/узагальнений переклад основних положень, сформований за видимими частинами зображення. Якщо потрібно — підготую повний, дослівний переклад у текстовому форматі.)
+        </pre>
+      </div>
+
+      <footer>
+        <button class="ghost" id="closeFooter">Закрити</button>
+      </footer>
+    </div>
+  </div>
+    </main>
+    <footer>
+        <div>
+            <section>
+                <div style="width: 15rem ;">
+                    <img class="logo_img" src="https://i.postimg.cc/GtM68FQg/Su-Shi-Dza-logo-removebg-preview.webp" alt="">
+                    <h3 class="logo_txt">SushiDza</h3>
+                    <p>© SushiDza. Всі права захищені.</p>
+                </div>
+                <div>
+                    <p>
+                        <span>Навігація</span>
+                        <a class="fnav_txt" href="">Головна</a>
+                        <a class="fnav_txt" href="">Доставка</a>
+                        <a class="fnav_txt" href="">Про нас</a>
+                        <a class="fnav_txt" href="">Новини</a>
+                        <a class="fnav_txt" href="">Меню</a>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <span>Оформити замовлення</span>
+                        <a href="">+38 (098) 566 8482</a>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <span>Години роботи</span>
+                        <span>
+                            З 10:00 до 22:30 у будні <br/>
+                            З 10:00 до 20:00 у вихідні
+                        </span>
+                        <span>Нічні доставки</span>
+                    </p>
+                </div>
+            </section>
+        </div>
+    </footer>
+    <script>
+  // Elements
+  const openBtn = document.getElementById('openContract');
+  const modalWrap = document.getElementById('modal');
+  const closeBtn = document.getElementById('closeBtn');
+  const closeFooter = document.getElementById('closeFooter');
+  const downloadBtn = document.getElementById('downloadTxt');
+  const contractTextEl = document.getElementById('contractText');
+
+  function openModal(){
+    modalWrap.style.display = 'flex';
+    modalWrap.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modalWrap.style.display = 'none';
+    modalWrap.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  closeFooter.addEventListener('click', closeModal);
+
+  // Close on backdrop click (not on modal content)
+  modalWrap.addEventListener('click', (e)=>{
+    if(e.target === modalWrap) closeModal();
+  });
+
+  // Download as .txt
+  downloadBtn.addEventListener('click', ()=>{
+    const text = contractTextEl.innerText;
+    const blob = new Blob([text], {type: 'text/plain;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'dogovir_perelik_ukr.txt';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
+
+  // Keyboard: Esc to close
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && modalWrap.style.display === 'flex') closeModal();
+  });
+</script>
+</body>
+</html>
