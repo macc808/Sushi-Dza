@@ -663,6 +663,13 @@ article{
       }
     }catch(e){/* ignore */}
   });
+     document.querySelectorAll('.nav_txt, .fnav_txt').forEach(a => {
+    try{
+      if(a.textContent && a.textContent.trim().toLowerCase().includes('про нас')){
+        a.addEventListener('click', function(e){ e && e.preventDefault(); window.location.href = 'aboutus.html'; });
+      }
+    }catch(e){/* ignore */}
+  });
     });
   </script>
 </body>
