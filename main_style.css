@@ -767,7 +767,7 @@ nav {
   height: fit-content;
   margin: auto;
   margin-left: 0;
-  padding-bottom: 5rem;
+  padding-bottom: 10%;
   border-radius: 0 23px 23px 0;
   box-shadow: 0.5rem 1rem 1rem rgba(0, 0, 0, 0.1);
 }
@@ -791,7 +791,7 @@ nav {
 }
 
 .banner2_text{
-  width: 60rem;
+  width: 20 rem;
   height: 15rem;
   margin: auto;
   width: 100%;
@@ -1174,7 +1174,7 @@ footer section {
 @media (max-width: 1024px) {
 
 nav div {
-    gap: 1rem;
+    gap: 2rem;
 }
 nav a {
     font-size: 1.2rem;
@@ -1195,5 +1195,8 @@ nav a {
     border-radius: 23px;
 }
 
+.banner2_img{
+  padding-bottom: 25rem;
+}
 }
 
